@@ -296,6 +296,346 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   Builder controls
+   ═══════════════════════════════════════════════════════════════ */
+
+/**
+ * The block card. Its border warms toward the violet on hover so the row you
+ * are pointing at is obvious in a long stack, without the card moving — these
+ * are drag targets, and a card that shifts under the cursor is harder to grab.
+ */
+.block-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ui-border);
+  background: color-mix(in oklab, var(--ui-bg-elevated) 40%, transparent);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.block-card:hover {
+  border-color: rgb(108 32 255 / 0.35);
+}
+
+.block-card:focus-within {
+  border-color: rgb(108 32 255 / 0.55);
+  box-shadow: 0 0 0 1px rgb(108 32 255 / 0.25);
+}
+
+/* The card left behind while its original is being dragged. */
+.is-dragging {
+  opacity: 0.35;
+  border-style: dashed;
+}
+
+/**
+ * Height-animated disclosure. Animating `grid-template-rows` from `0fr` to
+ * `1fr` is the one way to transition to a content's natural height in CSS —
+ * `height: auto` is not interpolable, and a `max-height` guess either clips a
+ * tall editor or spends the transition crossing empty space.
+ *
+ * Not named `.collapse`: Tailwind ships a `collapse` utility that sets
+ * `visibility: collapse`, and the collision hides every editor in the panel.
+ */
+.disclosure {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.34s var(--ease-out-expo);
+}
+
+.disclosure.is-open {
+  grid-template-rows: 1fr;
+}
+
+.disclosure__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/**
+ * Segmented control. The thumb is placed from two custom properties rather than
+ * a measured offset, so it stays aligned through resizes and font swaps with no
+ * JavaScript watching the DOM.
+ */
+.segmented {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  gap: 0.125rem;
+  padding: 0.1875rem;
+  border-radius: 0.5rem;
+  background: var(--ui-bg-elevated);
+  border: 1px solid var(--ui-border);
+}
+
+.segmented__thumb {
+  position: absolute;
+  top: 0.1875rem;
+  bottom: 0.1875rem;
+  left: 0.1875rem;
+  width: calc((100% - 0.375rem) / var(--count));
+  border-radius: 0.375rem;
+  background: linear-gradient(135deg, var(--color-violet-500), var(--color-violet-600));
+  box-shadow: 0 4px 14px -6px rgb(108 32 255 / 0.9);
+  transform: translate3d(calc(var(--active) * 100%), 0, 0);
+  transition:
+    transform 0.36s var(--ease-out-expo),
+    opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.segmented__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--ui-text-dimmed);
+  transition: color 0.25s ease;
+}
+
+.segmented__option:hover {
+  color: var(--ui-text);
+}
+
+.segmented__option.is-active {
+  color: #fff;
+}
+
+/* Filter and multi-select pills. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.25rem 0.5625rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg-elevated);
+  font-size: 0.75rem;
+  color: var(--ui-text-muted);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s var(--ease-out-expo);
+}
+
+.chip:hover {
+  color: var(--ui-text);
+  border-color: rgb(108 32 255 / 0.4);
+  transform: translate3d(0, -1px, 0);
+}
+
+.chip.is-active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--color-violet-500), var(--color-violet-600));
+}
+
+/* Colour swatches. */
+.swatch-input {
+  position: relative;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  border: 1px solid var(--ui-border);
+  cursor: pointer;
+}
+
+/* The native control is bigger than its well on every engine; oversize and
+   clip it rather than trying to style the control itself, which is not stylable. */
+.swatch-input input {
+  position: absolute;
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.swatch {
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  transition:
+    transform 0.2s var(--ease-out-expo),
+    box-shadow 0.2s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.18);
+}
+
+.swatch.is-active {
+  box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 3.5px var(--color-violet-500);
+}
+
+/* Label-and-switch row. */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.25rem 0.375rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-row:hover {
+  background: color-mix(in oklab, var(--ui-bg-elevated) 60%, transparent);
+}
+
+/* Tech-icon and emoji keys. */
+.icon-grid {
+  max-height: 18rem;
+  overflow-y: auto;
+  border-radius: 0.375rem;
+  border: 1px solid var(--ui-border);
+  padding: 0.5rem;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.icon-key {
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  padding: 0.25rem;
+  opacity: 0.5;
+  transition:
+    transform 0.2s var(--ease-out-expo),
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.icon-key:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.icon-key.is-selected {
+  opacity: 1;
+  border-color: var(--color-violet-500);
+  background: rgb(108 32 255 / 0.12);
+}
+
+.emoji-key {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  line-height: 1;
+  transition:
+    transform 0.18s var(--ease-out-expo),
+    background-color 0.18s ease;
+}
+
+.emoji-key:hover {
+  transform: scale(1.25);
+  background: var(--ui-bg-elevated);
+}
+
+/**
+ * Block palette card. The icon well fills with the gradient on hover, which
+ * gives the grid one moving part per card instead of a whole card in motion —
+ * seventeen cards all lifting at once would be noise.
+ */
+.palette-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 0.625rem;
+  text-align: left;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ui-border);
+  background: color-mix(in oklab, var(--ui-bg-elevated) 35%, transparent);
+  animation: reahu-rise 0.4s var(--ease-out-expo) both;
+  animation-delay: var(--stagger, 0ms);
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s var(--ease-out-expo);
+}
+
+.palette-card:hover {
+  border-color: rgb(108 32 255 / 0.5);
+  background: color-mix(in oklab, var(--ui-bg-elevated) 70%, transparent);
+  transform: translate3d(0, -2px, 0);
+}
+
+.palette-card__icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  border-radius: 0.375rem;
+  background: var(--ui-bg-elevated);
+  color: var(--color-violet-400);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.palette-card:hover .palette-card__icon {
+  background: linear-gradient(135deg, var(--color-violet-500), var(--color-sky-500));
+  color: #fff;
+}
+
+.palette-card__add {
+  color: var(--ui-text-dimmed);
+  opacity: 0;
+  transform: translate3d(-4px, 0, 0);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s var(--ease-out-expo);
+}
+
+.palette-card:hover .palette-card__add {
+  opacity: 1;
+  transform: none;
+}
+
+/**
+ * Rows that appear and disappear inside an editor — bullets, links, badges.
+ * `position: absolute` on the leaving node is what lets the survivors slide up
+ * into the gap instead of snapping once the exit finishes.
+ */
+.row-enter-active,
+.row-leave-active {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s var(--ease-out-expo);
+}
+
+.row-enter-from,
+.row-leave-to {
+  opacity: 0;
+  transform: translate3d(0, -6px, 0);
+}
+
+.row-leave-active {
+  position: absolute;
+  width: 100%;
+}
+
+.row-move {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    Rendered README preview
    ═══════════════════════════════════════════════════════════════ */
 
@@ -462,6 +802,20 @@
 
   .reveal {
     opacity: 1;
+    transform: none;
+  }
+
+  /* The builder's motion is feedback, not decoration — it still has to land
+     instantly rather than be skipped, so these keep their end state. */
+  .palette-card {
+    animation: none;
+  }
+
+  .chip:hover,
+  .icon-key:hover,
+  .emoji-key:hover,
+  .swatch:hover,
+  .palette-card:hover {
     transform: none;
   }
 }

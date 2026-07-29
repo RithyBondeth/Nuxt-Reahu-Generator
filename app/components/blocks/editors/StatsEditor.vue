@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { STATS_THEME_OPTIONS } from '~/config/stats-themes'
+import { LANG_LAYOUT_OPTIONS } from '~/config/ui-options'
 import type { BlockOf } from '~/types'
 
 const props = defineProps<{ block: BlockOf<'stats'> }>()
 const model = computed(() => props.block.props)
 
-const TOGGLES = [
-  { key: 'showStats', label: 'Stats card' },
-  { key: 'showTopLangs', label: 'Top languages' },
-  { key: 'showStreak', label: 'Streak' },
-  { key: 'sideBySide', label: 'Side by side' }
+const CARDS = [
+  { key: 'showStats', label: 'Stats card', hint: 'Commits, PRs, issues, rank' },
+  { key: 'showTopLangs', label: 'Top languages', hint: 'By bytes across your repos' },
+  { key: 'showStreak', label: 'Contribution streak', hint: 'Current and longest run' }
+] as const
+
+const LAYOUT = [
+  { key: 'sideBySide', label: 'Side by side', hint: 'One row instead of stacked' },
+  { key: 'hideBorder', label: 'Hide card border' },
+  { key: 'showIcons', label: 'Show icons' },
+  { key: 'hideRank', label: 'Hide the rank circle' },
+  { key: 'includeAllCommits', label: 'Count all-time commits', hint: 'Rather than this year only' }
 ] as const
 </script>
 
@@ -40,24 +48,77 @@ const TOGGLES = [
     <UFormField
       label="Theme"
       size="sm"
+      :hint="`${STATS_THEME_OPTIONS.length} available`"
     >
-      <USelect
+      <USelectMenu
         v-model="model.theme"
         :items="STATS_THEME_OPTIONS"
+        value-key="value"
         class="w-full"
+        placeholder="Pick a theme"
       />
     </UFormField>
 
-    <div class="space-y-2 pt-1">
-      <div
-        v-for="toggle in TOGGLES"
-        :key="toggle.key"
-        class="flex items-center justify-between gap-3"
-      >
-        <span class="text-sm text-muted">{{ toggle.label }}</span>
-        <USwitch v-model="model[toggle.key]" />
-      </div>
+    <div class="space-y-1 pt-1">
+      <p class="eyebrow text-dimmed">
+        Cards
+      </p>
+      <ToggleRow
+        v-for="card in CARDS"
+        :key="card.key"
+        v-model="model[card.key]"
+        :label="card.label"
+        :hint="card.hint"
+      />
     </div>
+
+    <template v-if="model.showTopLangs">
+      <UFormField
+        label="Language chart"
+        size="sm"
+      >
+        <SegmentedField
+          v-model="model.langLayout"
+          :items="LANG_LAYOUT_OPTIONS"
+          icon-only
+        />
+      </UFormField>
+
+      <UFormField
+        :label="`Languages shown: ${model.langsCount}`"
+        size="sm"
+      >
+        <USlider
+          v-model="model.langsCount"
+          :min="1"
+          :max="20"
+        />
+      </UFormField>
+    </template>
+
+    <div class="space-y-1 pt-1">
+      <p class="eyebrow text-dimmed">
+        Layout
+      </p>
+      <ToggleRow
+        v-for="option in LAYOUT"
+        :key="option.key"
+        v-model="model[option.key]"
+        :label="option.label"
+        :hint="'hint' in option ? option.hint : undefined"
+      />
+    </div>
+
+    <UFormField
+      :label="`Corner radius: ${model.borderRadius}px`"
+      size="sm"
+    >
+      <USlider
+        v-model="model.borderRadius"
+        :min="0"
+        :max="24"
+      />
+    </UFormField>
 
     <p
       v-if="!model.username.trim()"
@@ -67,14 +128,15 @@ const TOGGLES = [
     </p>
 
     <p class="text-xs text-dimmed">
-      Cards are served by the public
+      These cards come from a community deployment of
       <a
         href="https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own"
         target="_blank"
         class="underline"
-      >github-readme-stats</a>
-      instance, which is shared and often rate-limited. Self-host it and change
-      <code>STATS_HOST</code> in <code>config/services.ts</code> if you see blank cards.
+      >github-readme-stats</a>, because the project's own instance is currently
+      paused. Anyone who opens your profile fetches an image from that host. If
+      you rely on these cards, deploy your own copy and set
+      <code>STATS_HOST</code> in <code>config/services.ts</code>.
     </p>
   </div>
 </template>

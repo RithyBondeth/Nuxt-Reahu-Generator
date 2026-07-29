@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { ALIGNMENT_OPTIONS } from '~/config/ui-options'
 import type { BlockOf } from '~/types'
 
 const props = defineProps<{ block: BlockOf<'about'> }>()
 const model = computed(() => props.block.props)
 
-const addBullet = () => model.value.bullets.push('')
-const removeBullet = (index: number) => model.value.bullets.splice(index, 1)
+/**
+ * Picking an emoji fills the first blank bullet, or starts a new one when they
+ * are all written. Prepending to whichever line happens to be focused would be
+ * fussier to predict than it is useful — a bullet almost always opens with its
+ * emoji, so "give me a line that starts with this" is the actual intent.
+ */
+function insertEmoji(emoji: string) {
+  const blank = model.value.bullets.findIndex(bullet => !bullet.trim())
+
+  if (blank === -1) model.value.bullets.push(`${emoji} `)
+  else model.value.bullets[blank] = `${emoji} `
+}
 </script>
 
 <template>
@@ -36,36 +47,39 @@ const removeBullet = (index: number) => model.value.bullets.splice(index, 1)
       label="Bullet points"
       size="sm"
     >
-      <div class="space-y-2">
-        <div
-          v-for="(_, index) in model.bullets"
-          :key="index"
-          class="flex items-center gap-2"
-        >
-          <UInput
-            v-model="model.bullets[index]"
-            class="flex-1"
-            placeholder="🔭 Currently working on …"
-          />
-          <UButton
-            icon="i-lucide-x"
-            color="neutral"
-            variant="ghost"
-            size="xs"
-            aria-label="Remove bullet"
-            @click="removeBullet(index)"
-          />
-        </div>
+      <template #hint>
+        <EmojiPicker @pick="insertEmoji" />
+      </template>
 
-        <UButton
-          icon="i-lucide-plus"
-          label="Add bullet"
-          color="neutral"
-          variant="soft"
-          size="xs"
-          @click="addBullet"
-        />
-      </div>
+      <StringListField
+        v-model="model.bullets"
+        placeholder="🔭 Currently working on …"
+        add-label="Add bullet"
+      />
+    </UFormField>
+
+    <UFormField
+      label="Pull quote"
+      size="sm"
+      hint="optional"
+    >
+      <UTextarea
+        v-model="model.quote"
+        :rows="2"
+        autoresize
+        placeholder="Something you believe about building software."
+        class="w-full"
+      />
+    </UFormField>
+
+    <UFormField
+      label="Alignment"
+      size="sm"
+    >
+      <SegmentedField
+        v-model="model.align"
+        :items="ALIGNMENT_OPTIONS"
+      />
     </UFormField>
   </div>
 </template>

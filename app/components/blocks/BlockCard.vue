@@ -11,15 +11,16 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-lg border border-default bg-elevated/40">
+  <div class="block-card">
     <header class="flex items-center gap-2 px-2 py-2">
       <UIcon
         name="i-lucide-grip-vertical"
-        class="drag-handle size-5 shrink-0 cursor-grab text-dimmed active:cursor-grabbing"
+        class="drag-handle size-5 shrink-0 cursor-grab text-dimmed transition-colors hover:text-default active:cursor-grabbing"
       />
 
       <button
         class="flex min-w-0 flex-1 items-center gap-2 text-left"
+        :aria-expanded="open"
         @click="open = !open"
       >
         <UIcon
@@ -29,7 +30,7 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
         <span class="truncate text-sm font-medium">{{ definition.label }}</span>
         <UIcon
           name="i-lucide-chevron-down"
-          class="size-4 shrink-0 text-dimmed transition-transform"
+          class="size-4 shrink-0 text-dimmed transition-transform duration-300"
           :class="{ '-rotate-90': !open }"
         />
       </button>
@@ -72,11 +73,20 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
       </div>
     </header>
 
+    <!--
+      `grid-template-rows: 0fr -> 1fr` is what makes this animate to the content's
+      own height. A max-height guess would either clip a tall editor or coast
+      through empty space on a short one, and neither reads as the panel opening.
+    -->
     <div
-      v-if="open"
-      class="border-t border-default px-3 py-3"
+      class="disclosure"
+      :class="{ 'is-open': open }"
     >
-      <BlockEditor :block="block" />
+      <div class="disclosure__inner">
+        <div class="border-t border-default px-3 py-3">
+          <BlockEditor :block="block" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

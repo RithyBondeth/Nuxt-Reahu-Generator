@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { LANDING_BLOCKS, LANDING_CLAIMS, LANDING_HERO, LANDING_MARQUEE } from '~/config/landing'
+import { BLOCK_ORDER } from '~/core/blocks'
 
 // The shell's titleTemplate appends the brand, so the home page keeps its own
 // title untouched rather than repeating it.
 useHead({ title: '' })
+
+const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.length))
 </script>
 
 <template>
@@ -80,7 +83,7 @@ useHead({ title: '' })
             {{ LANDING_BLOCKS.eyebrow }}
           </p>
           <h2 class="display mt-3 text-3xl sm:text-4xl">
-            {{ LANDING_BLOCKS.title }}
+            {{ blocksTitle }}
           </h2>
           <p class="mt-3 max-w-xl text-muted">
             {{ LANDING_BLOCKS.description }}

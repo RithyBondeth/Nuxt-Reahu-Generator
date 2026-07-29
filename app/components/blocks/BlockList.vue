@@ -7,17 +7,28 @@ const { blocks } = useReadme()
 <template>
   <section class="space-y-3">
     <div class="flex items-center justify-between gap-2">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-dimmed">
+      <h2 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-dimmed">
         Blocks
+        <UBadge
+          :label="String(blocks.length)"
+          color="neutral"
+          variant="subtle"
+          size="sm"
+        />
       </h2>
       <HistoryControls />
     </div>
 
+    <!--
+      The draggable owns the reorder animation, so the transition group here only
+      handles blocks arriving and leaving. Running both over the same nodes makes
+      a dragged card fight two transforms at once.
+    -->
     <VueDraggable
       v-model="blocks"
       handle=".drag-handle"
       :animation="180"
-      ghost-class="opacity-40"
+      ghost-class="is-dragging"
       class="space-y-2"
     >
       <BlockCard

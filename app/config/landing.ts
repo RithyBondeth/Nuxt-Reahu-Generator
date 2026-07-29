@@ -9,7 +9,12 @@ export const LANDING_HERO = {
 
 export const LANDING_BLOCKS = {
   eyebrow: 'the vocabulary',
-  title: 'Six blocks, any order',
+  /**
+   * `{count}` is filled from the block registry at render time. The previous
+   * copy said "six blocks" and had to be remembered every time one was added,
+   * which is exactly the kind of promise that quietly goes stale.
+   */
+  title: '{count} blocks, any order',
   description: 'Drag to rearrange, duplicate what you need, delete what you don\'t. The document is the list.'
 }
 

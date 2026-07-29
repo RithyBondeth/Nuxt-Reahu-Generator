@@ -1,12 +1,23 @@
 import type { BlockRenderer } from '~/types'
-import { heading } from './helpers'
+import { align, heading } from './helpers'
 
-export const renderAbout: BlockRenderer<'about'> = ({ heading: title, intro, bullets }) => {
+export const renderAbout: BlockRenderer<'about'> = ({
+  heading: title,
+  intro,
+  bullets,
+  quote,
+  align: alignment
+}) => {
   const list = bullets
     .map(bullet => bullet.trim())
     .filter(Boolean)
     .map(bullet => `- ${bullet}`)
     .join('\n')
 
-  return heading(title) + [intro.trim(), list].filter(Boolean).join('\n\n')
+  const pull = quote.trim() ? `> ${quote.trim()}` : ''
+
+  const body = [intro.trim(), list, pull].filter(Boolean).join('\n\n')
+  if (!body) return ''
+
+  return heading(title) + align(body, alignment)
 }

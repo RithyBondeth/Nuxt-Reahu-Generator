@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ALIGNMENT_OPTIONS, ICON_THEME_OPTIONS } from '~/config/ui-options'
+import {
+  ALIGNMENT_OPTIONS,
+  BADGE_STYLE_OPTIONS,
+  ICON_PROVIDER_OPTIONS,
+  ICON_THEME_OPTIONS
+} from '~/config/ui-options'
 import type { BlockOf } from '~/types'
 
 const props = defineProps<{ block: BlockOf<'techStack'> }>()
@@ -18,8 +23,19 @@ const model = computed(() => props.block.props)
       />
     </UFormField>
 
+    <UFormField
+      label="Render as"
+      size="sm"
+    >
+      <SegmentedField
+        v-model="model.provider"
+        :items="ICON_PROVIDER_OPTIONS"
+      />
+    </UFormField>
+
     <div class="grid grid-cols-3 gap-2">
       <UFormField
+        v-if="model.provider === 'skillicons'"
         label="Theme"
         size="sm"
       >
@@ -31,6 +47,7 @@ const model = computed(() => props.block.props)
       </UFormField>
 
       <UFormField
+        v-if="model.provider === 'skillicons'"
         label="Per line"
         size="sm"
       >
@@ -44,13 +61,26 @@ const model = computed(() => props.block.props)
       </UFormField>
 
       <UFormField
+        v-if="model.provider === 'badges'"
+        label="Badge style"
+        size="sm"
+        class="col-span-2"
+      >
+        <USelect
+          v-model="model.badgeStyle"
+          :items="BADGE_STYLE_OPTIONS"
+          class="w-full"
+        />
+      </UFormField>
+
+      <UFormField
         label="Align"
         size="sm"
       >
-        <USelect
+        <SegmentedField
           v-model="model.align"
           :items="ALIGNMENT_OPTIONS"
-          class="w-full"
+          icon-only
         />
       </UFormField>
     </div>
@@ -64,5 +94,14 @@ const model = computed(() => props.block.props)
         :theme="model.theme"
       />
     </UFormField>
+
+    <p
+      v-if="model.provider === 'badges'"
+      class="text-xs text-dimmed"
+    >
+      A few marks — Java, VS Code, AWS, Azure, C#, the Adobe apps — have been
+      withdrawn from simple-icons over trademark claims, so those render as
+      text-only badges. The icon grid still draws all of them.
+    </p>
   </div>
 </template>

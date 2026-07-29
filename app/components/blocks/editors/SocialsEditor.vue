@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PLATFORM_OPTIONS } from '~/config/social-platforms'
 import { ALIGNMENT_OPTIONS, BADGE_STYLE_OPTIONS } from '~/config/ui-options'
 import type { BlockOf } from '~/types'
 
@@ -39,25 +40,33 @@ const removeLink = (index: number) => model.value.links.splice(index, 1)
         label="Align"
         size="sm"
       >
-        <USelect
+        <SegmentedField
           v-model="model.align"
           :items="ALIGNMENT_OPTIONS"
-          class="w-full"
+          icon-only
         />
       </UFormField>
     </div>
 
+    <ToggleRow
+      v-model="model.showLabels"
+      label="Show platform names"
+      hint="Off gives you logo-only badges"
+    />
+
     <UFormField
-      label="Links"
+      :label="`Links (${PLATFORM_OPTIONS.length} platforms)`"
       size="sm"
     >
       <div class="space-y-2">
-        <SocialLinkRow
-          v-for="(link, index) in model.links"
-          :key="index"
-          v-model="model.links[index]!"
-          @remove="removeLink(index)"
-        />
+        <TransitionGroup name="row">
+          <SocialLinkRow
+            v-for="(link, index) in model.links"
+            :key="index"
+            v-model="model.links[index]!"
+            @remove="removeLink(index)"
+          />
+        </TransitionGroup>
 
         <UButton
           icon="i-lucide-plus"

@@ -1,31 +1,34 @@
-import { SERVICES } from '~/config/services'
 import { SOCIAL_PLATFORMS } from '~/config/social-platforms'
-import type { BadgeStyle, BlockRenderer, SocialLink } from '~/types'
-import { align, heading } from './helpers'
-
-/** shields.io reads `-` and `_` as field separators, so they must be doubled. */
-const escapeBadgeText = (text: string) => text.replace(/-/g, '--').replace(/_/g, '__')
-
-function renderBadge(link: SocialLink, style: BadgeStyle): string {
-  const platform = SOCIAL_PLATFORMS[link.platform]
-  const badge = `${SERVICES.shields}/${escapeBadgeText(platform.label)}-${platform.color}`
-    + `?style=${style}&logo=${platform.logo}&logoColor=white`
-
-  return `<a href="${platform.href(link.value.trim())}" target="_blank">`
-    + `<img src="${badge}" alt="${platform.label}" /></a>`
-}
+import type { BlockRenderer } from '~/types'
+import { badge, heading, imageRow } from './helpers'
 
 export const renderSocials: BlockRenderer<'socials'> = ({
   heading: title,
   links,
   align: alignment,
-  style
+  style,
+  showLabels
 }) => {
   const badges = links
     .filter(link => link.value.trim())
-    .map(link => renderBadge(link, style))
+    .map((link) => {
+      const platform = SOCIAL_PLATFORMS[link.platform]
+      const name = link.label?.trim() || platform.label
+
+      return badge({
+        label: '',
+        // A logo-only badge still needs a message, or shields has nothing to
+        // draw; a single space collapses to just the mark.
+        message: showLabels ? name : ' ',
+        color: platform.color,
+        logo: platform.logo,
+        style,
+        href: platform.href(link.value.trim()),
+        alt: name
+      })
+    })
 
   if (!badges.length) return ''
 
-  return heading(title) + align(badges.join('\n  '), alignment, 'p')
+  return heading(title) + imageRow(badges, alignment)
 }
