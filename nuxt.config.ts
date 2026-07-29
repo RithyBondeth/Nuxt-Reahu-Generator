@@ -6,14 +6,34 @@ export default defineNuxtConfig({
     '@vueuse/nuxt'
   ],
 
+  // Components are grouped into feature folders (`blocks/`, `readme/`) for
+  // navigability, but keep flat names — `<BlockCard>`, not `<BlocksBlockCard>`.
+  // Names must therefore stay unique across those folders.
+  components: [
+    { path: '~/components', pathPrefix: false }
+  ],
+
   devtools: {
     enabled: true
   },
 
   css: ['~/assets/css/main.css'],
 
+  // The graphite-and-lime interface is designed dark-first. Light mode remains
+  // fully supported and can be selected from the persistent header control.
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark'
+  },
+
   routeRules: {
-    '/': { prerender: true }
+    // Landing page is static — good for SEO and free to serve.
+    '/': { prerender: true },
+    '/templates': { prerender: true },
+    '/templates/**': { prerender: true },
+    // The builder reads localStorage + the URL hash on boot. Rendering it on the
+    // server would hydrate against state the server cannot see, so it is SPA-only.
+    '/build': { ssr: false }
   },
 
   compatibilityDate: '2026-06-30',
