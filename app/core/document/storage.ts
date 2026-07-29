@@ -24,7 +24,3 @@ export function loadStoredBlocks(): Block[] | null {
 export function persistBlocks(blocks: Block[]): void {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(blocks))
 }
-
-export function clearStoredBlocks(): void {
-  window.localStorage.removeItem(STORAGE_KEY)
-}

@@ -11,7 +11,7 @@ import type { Block } from '~/types'
  */
 const SHARE_PARAM = 's'
 
-export function encodeBlocks(blocks: Block[]): string {
+function encodeBlocks(blocks: Block[]): string {
   return compressToEncodedURIComponent(JSON.stringify(blocks))
 }
 

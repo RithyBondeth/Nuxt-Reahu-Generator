@@ -12,7 +12,7 @@ import type { BlockPropsMap, BlockType } from '~/types'
 
 export type BlockCategory = 'Structure' | 'Content' | 'Graphs' | 'Motion' | 'Links'
 
-export interface BlockDefinition<K extends BlockType> {
+interface BlockDefinition<K extends BlockType> {
   label: string
   icon: string
   description: string

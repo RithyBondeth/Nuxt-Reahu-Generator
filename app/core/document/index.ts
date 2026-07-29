@@ -1,3 +1,3 @@
-export { downloadMarkdown, downloadTextFile } from './download'
-export { buildShareUrl, decodeBlocks, encodeBlocks, readSharePayload } from './share'
-export { clearStoredBlocks, loadStoredBlocks, persistBlocks } from './storage'
+export { downloadMarkdown } from './download'
+export { buildShareUrl, decodeBlocks, readSharePayload } from './share'
+export { loadStoredBlocks, persistBlocks } from './storage'

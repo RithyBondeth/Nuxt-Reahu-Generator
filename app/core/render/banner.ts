@@ -1,5 +1,5 @@
 import { SERVICES } from '~/config/services'
-import type { BlockPropsMap, BlockRenderer, ColorMode } from '~/types'
+import type { BlockRenderer, ColorMode } from '~/types'
 import { hex, qs } from './helpers'
 
 /**
@@ -55,6 +55,3 @@ export const renderBanner: BlockRenderer<'banner'> = ({
     text.trim() ? text.trim().replace(/"/g, '&quot;') : 'banner'
   }" />`
 }
-
-/** Shared with the divider block, which draws the same service at low height. */
-export type BannerProps = BlockPropsMap['banner']

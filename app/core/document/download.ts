@@ -1,5 +1,5 @@
 /** Triggers a browser download for in-memory text. No server round-trip. */
-export function downloadTextFile(
+function downloadTextFile(
   filename: string,
   contents: string,
   mime = 'text/plain;charset=utf-8'

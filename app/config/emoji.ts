@@ -13,5 +13,3 @@ export const EMOJI_GROUPS: { group: string, emoji: string[] }[] = [
   { group: 'Life', emoji: ['🌏', '☕', '🎵', '📷', '🏃', '🌙', '🐈', '🍜'] },
   { group: 'Fun', emoji: ['⚡', '🔥', '✨', '🎲', '🏆', '🌈', '🦀', '🐧'] }
 ]
-
-export const ALL_EMOJI = EMOJI_GROUPS.flatMap(({ emoji }) => emoji)

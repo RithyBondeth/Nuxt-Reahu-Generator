@@ -18,7 +18,7 @@ interface ThemeGroup<T> {
 }
 
 /** github-readme-stats, streak, and repo pins all share this set. */
-export const STATS_THEME_GROUPS: ThemeGroup<StatsTheme>[] = [
+const STATS_THEME_GROUPS: ThemeGroup<StatsTheme>[] = [
   {
     group: 'Popular',
     themes: ['tokyonight', 'radical', 'dracula', 'onedark', 'gruvbox', 'merko', 'synthwave', 'catppuccin_mocha', 'nightowl', 'shades-of-purple']
@@ -41,14 +41,14 @@ export const STATS_THEME_GROUPS: ThemeGroup<StatsTheme>[] = [
   }
 ]
 
-export const TROPHY_THEMES: TrophyTheme[] = [
+const TROPHY_THEMES: TrophyTheme[] = [
   'flat', 'onedark', 'gruvbox', 'dracula', 'monokai', 'chalk', 'nord', 'alduin',
   'darkhub', 'juicyfresh', 'buddhism', 'oldie', 'radical', 'onestar', 'discord',
   'algolia', 'gitdimmed', 'tokyonight', 'matrix', 'apprentice', 'dark_dimmed',
   'dark_lover', 'kimbie_dark', 'aura', 'default'
 ]
 
-export const ACTIVITY_THEMES: ActivityTheme[] = [
+const ACTIVITY_THEMES: ActivityTheme[] = [
   'github-compact', 'github', 'github-dark', 'github-dark-dimmed', 'github-light',
   'react', 'react-dark', 'vue', 'xcode', 'rogue', 'nord', 'gotham', 'dracula',
   'merko', 'gruvbox', 'monokai', 'nightowl', 'noctis-minimus', 'tokyo-night',
@@ -77,8 +77,3 @@ export const STATS_THEME_OPTIONS = STATS_THEME_GROUPS.flatMap(({ group, themes }
 
 export const TROPHY_THEME_OPTIONS = TROPHY_THEMES.map(toOption)
 export const ACTIVITY_THEME_OPTIONS = ACTIVITY_THEMES.map(toOption)
-
-/** Flat list of every distinct stats theme, for counts and validation. */
-export const STATS_THEMES: StatsTheme[] = [
-  ...new Set(STATS_THEME_GROUPS.flatMap(({ themes }) => themes))
-]

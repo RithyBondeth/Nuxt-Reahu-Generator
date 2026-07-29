@@ -27,24 +27,22 @@
  *
  * The real fix, and the one the upstream project recommends, is to run your
  * own: https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own
- * Then set `STATS_HOST` to your instance. Switching back to the canonical host
- * is the one-line change below.
+ * Then set `STATS_HOST` to your instance.
  */
-export const STATS_HOST_CANONICAL = 'https://github-readme-stats.vercel.app'
-export const STATS_HOST = 'https://gh-readme-stats.vercel.app'
+const STATS_HOST = 'https://gh-readme-stats.vercel.app'
 
 /**
  * Do NOT point this at `github-readme-streak-stats.herokuapp.com`. That host
  * stopped resolving when Heroku ended free dynos, though most tutorials online
  * still reference it. `demolab.com` is the maintained replacement.
  */
-export const STREAK_HOST = 'https://streak-stats.demolab.com'
+const STREAK_HOST = 'https://streak-stats.demolab.com'
 
 /**
  * Same story as the streak service: `readme-typing-svg.herokuapp.com` is dead
  * and still all over the internet. This is the live one.
  */
-export const TYPING_HOST = 'https://readme-typing-svg.demolab.com'
+const TYPING_HOST = 'https://readme-typing-svg.demolab.com'
 
 /**
  * The canonical trophy host, `github-profile-trophy.vercel.app`, currently
@@ -53,7 +51,7 @@ export const TYPING_HOST = 'https://readme-typing-svg.demolab.com'
  * retry. This is a working deployment of the same service and takes the same
  * parameters. Check the canonical host before changing this back.
  */
-export const TROPHY_HOST = 'https://github-trophies.vercel.app'
+const TROPHY_HOST = 'https://github-trophies.vercel.app'
 
 export const SERVICES = {
   skillIcons: 'https://skillicons.dev/icons',

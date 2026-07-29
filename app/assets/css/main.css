@@ -1074,7 +1074,7 @@ body {
 }
 
 /**
- * Block palette card. The icon well fills with the gradient on hover, which
+ * Block palette card. The icon well fills with the brand lime on hover, which
  * gives the grid one moving part per card instead of a whole card in motion —
  * seventeen cards all lifting at once would be noise.
  */
@@ -1265,14 +1265,6 @@ body {
   --readme-link: #4493f8;
   --readme-muted: #9198a1;
   --readme-code-bg: #6a737d40;
-}
-
-/* A README sample sitting directly on the disc, rather than in its own panel.
-   Two classes deep so it outranks `.readme-body` and `.readme-dark` regardless
-   of where those sit in the file. */
-.readme-body.readme-inset {
-  background: transparent;
-  padding: 0;
 }
 
 .readme-body > *:first-child { margin-top: 0; }

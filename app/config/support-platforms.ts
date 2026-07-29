@@ -1,6 +1,6 @@
 import type { SupportPlatform } from '~/types'
 
-export interface SupportDefinition {
+interface SupportDefinition {
   label: string
   /** shields.io badge background, hex without the leading `#`. */
   color: string

@@ -1,1 +1,1 @@
-export { renderBlock, renderReadme } from './registry'
+export { renderReadme } from './registry'

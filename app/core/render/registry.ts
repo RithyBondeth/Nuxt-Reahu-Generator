@@ -45,7 +45,7 @@ const RENDERERS: { [K in BlockType]: (props: BlockPropsMap[K]) => string } = {
 }
 
 /** Renders a single block, narrowing props to the matching renderer. */
-export function renderBlock(block: Block): string {
+function renderBlock(block: Block): string {
   const render = RENDERERS[block.type] as (props: Block['props']) => string
   return render(block.props).trim()
 }

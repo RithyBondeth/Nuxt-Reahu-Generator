@@ -139,11 +139,10 @@ Nuxt UI, so there is no CDN request at runtime.
 The landing page uses a compact product demo as its main visual. It mirrors the
 real two-pane builder rather than introducing a separate decorative hero.
 
-Derived assets (`favicon.png`, `apple-touch-icon.png`, `og-image.png`) are
+Derived assets (`apple-touch-icon.png`, `og-image.png`) are
 generated from the vector logo and social artwork.
 
 ```bash
-sips -s format png -z 64 64 public/reahu-mark.svg --out public/favicon.png
 sips -s format png -z 180 180 public/reahu-mark.svg --out public/apple-touch-icon.png
 sips -s format png public/og-image.svg --out public/og-image.png
 ```
@@ -187,8 +186,7 @@ and take the same parameters, but they belong to third parties nobody here has
 vetted, and every visitor to a generated README fetches an image from them. If
 you depend on these cards, [deploy your own
 instance](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own)
-and point `STATS_HOST` at it. `STATS_HOST_CANONICAL` is kept alongside so
-switching back is one character once upstream returns.
+and point `STATS_HOST` at it.
 
 **Do not use `github-readme-streak-stats.herokuapp.com`** or
 **`readme-typing-svg.herokuapp.com`**. Both stopped resolving when Heroku ended

@@ -1,6 +1,6 @@
 import type { SocialPlatform } from '~/types'
 
-export interface PlatformDefinition {
+interface PlatformDefinition {
   label: string
   /** shields.io badge background, hex without the leading `#`. */
   color: string
@@ -13,7 +13,7 @@ export interface PlatformDefinition {
   group: PlatformGroup
 }
 
-export type PlatformGroup = 'Core' | 'Code' | 'Writing' | 'Community' | 'Creative' | 'Work'
+type PlatformGroup = 'Core' | 'Code' | 'Writing' | 'Community' | 'Creative' | 'Work'
 
 /** Accepts either a bare handle or an already-complete URL. */
 const asUrl = (base: string) => (value: string) =>
@@ -85,7 +85,7 @@ export const SOCIAL_PLATFORMS: Record<SocialPlatform, PlatformDefinition> = {
 }
 
 /** Order the picker lists groups in. */
-export const PLATFORM_GROUPS: PlatformGroup[] = ['Core', 'Code', 'Writing', 'Community', 'Creative', 'Work']
+const PLATFORM_GROUPS: PlatformGroup[] = ['Core', 'Code', 'Writing', 'Community', 'Creative', 'Work']
 
 /**
  * Grouped option list for `USelectMenu`. Icons come from the same simple-icons

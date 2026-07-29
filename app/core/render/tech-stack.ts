@@ -8,7 +8,7 @@ import { align, badge, heading, imageRow, qs } from './helpers'
  *
  * skillicons draws its own brand colours; shields does not, so a badge needs
  * one supplied. Rather than carry a brand hex for every one of the ~200 slugs,
- * anything unlisted falls back to the eclipse navy — a consistent dark badge
+ * anything unlisted falls back to the brand graphite — a consistent dark badge
  * reads as deliberate, where a random colour per tool would not.
  */
 const BADGE_COLORS: Record<string, string> = {
@@ -50,7 +50,7 @@ export const renderTechStack: BlockRenderer<'techStack'> = ({
     const badges = icons.map(icon => badge({
       label: '',
       message: prettyName(icon),
-      color: BADGE_COLORS[icon] ?? '001038',
+      color: BADGE_COLORS[icon] ?? '1C1C1C',
       logo: LOGO_ALIASES[icon] ?? icon,
       style: badgeStyle,
       alt: prettyName(icon)
