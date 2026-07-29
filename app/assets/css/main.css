@@ -1,20 +1,116 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/**
+ * Reahu Generator — design tokens.
+ *
+ * Every colour below is sampled from the logo: the violet and azure brackets
+ * and the navy eclipse form between them. The neutral ramp is deliberately
+ * tinted toward that navy rather than using a stock grey, so the whole surface
+ * reads as one family with the mark instead of a brand colour dropped onto a
+ * default template.
+ *
+ * `violet`, `sky`, and `slate` keep their Tailwind names — Nuxt UI resolves its
+ * `primary`/`neutral` aliases against known colour names, so the ramps are
+ * overridden in place rather than introducing new ones.
+ */
 @theme static {
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Public Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+  /* Left bracket — #6C20FF at 500. Lead accent. */
+  --color-violet-50: #F3EDFF;
+  --color-violet-100: #E7DBFF;
+  --color-violet-200: #D0B8FF;
+  --color-violet-300: #B490FF;
+  --color-violet-400: #9459FF;
+  --color-violet-500: #6C20FF;
+  --color-violet-600: #5A12E6;
+  --color-violet-700: #4A0DBD;
+  --color-violet-800: #3B0C96;
+  --color-violet-900: #2F0B75;
+  --color-violet-950: #1C0549;
+
+  /* Right bracket — #009CFF at 500. Secondary accent. */
+  --color-sky-50: #E8F6FF;
+  --color-sky-100: #D0EDFF;
+  --color-sky-200: #A3DBFF;
+  --color-sky-300: #6BC6FF;
+  --color-sky-400: #2EB0FF;
+  --color-sky-500: #009CFF;
+  --color-sky-600: #007ACC;
+  --color-sky-700: #005E9E;
+  --color-sky-800: #004B7D;
+  --color-sky-900: #003D66;
+  --color-sky-950: #002440;
+
+  /* Neutrals pulled toward the eclipse navy — 950 is the disc itself. */
+  --color-slate-50: #F5F7FD;
+  --color-slate-100: #E9EDF8;
+  --color-slate-200: #D2D9EC;
+  --color-slate-300: #AEB9D6;
+  --color-slate-400: #8291BA;
+  --color-slate-500: #61709F;
+  --color-slate-600: #4A5885;
+  --color-slate-700: #3C476C;
+  --color-slate-800: #2A3355;
+  --color-slate-900: #131C3D;
+  --color-slate-950: #001038;
+}
+
+/**
+ * The signature: an eclipse.
+ *
+ * A dark disc with a one-pixel violet-to-azure corona, mirroring the logo's
+ * bracket-disc-bracket composition. Used once at full size in the hero and
+ * echoed at small scale as the builder's preview frame — one motif, two scales.
+ *
+ * The corona is a masked gradient border rather than a real border, so it can
+ * follow any radius without a second wrapper element.
+ */
+.corona {
+  position: relative;
+}
+
+.corona::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-violet-500), var(--color-sky-500));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Type set in the display face, tightened — headline scale only. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* Small mono label used to tag sections. Set in the code face on purpose: the
+   product's output is a text file, and the labels should sound like it. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* A README sample sitting directly on the disc, rather than in its own panel.
+   Two classes deep so it outranks `.readme-body` and `.readme-dark` regardless
+   of where those sit in the file. */
+.readme-body.readme-inset {
+  background: transparent;
+  padding: 0;
 }
 
 /**
@@ -108,7 +204,7 @@
   font-size: 85%;
   border-radius: 6px;
   background: var(--readme-code-bg);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
 }
 
 .readme-body pre {
@@ -146,3 +242,13 @@
   border: 1px solid var(--readme-border);
 }
 .readme-body th { font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

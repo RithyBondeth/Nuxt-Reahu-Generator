@@ -11,7 +11,9 @@ const theme = ref<'light' | 'dark'>('dark')
 
 <template>
   <section class="lg:sticky lg:top-20">
-    <div class="overflow-hidden rounded-lg border border-default">
+    <!-- `corona` echoes the hero's eclipse ring: this panel holds the document,
+         so it gets the motif. Everything else on this page stays quiet. -->
+    <div class="corona overflow-hidden rounded-xl">
       <ReadmeToolbar
         v-model:mode="mode"
         v-model:theme="theme"
@@ -25,7 +27,7 @@ const theme = ref<'light' | 'dark'>('dark')
         />
         <pre
           v-else
-          class="p-4 text-xs leading-relaxed"
+          class="p-4 font-mono text-xs leading-relaxed"
         ><code>{{ markdown }}</code></pre>
       </div>
     </div>

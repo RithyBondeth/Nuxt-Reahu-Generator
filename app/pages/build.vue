@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Builder — Profile README Builder',
+  title: 'Builder',
   description: 'Compose your GitHub profile README from drag-and-drop blocks.'
 })
 

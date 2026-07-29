@@ -1,8 +1,8 @@
-# Profile README Builder
+# Reahu Generator
 
-Build a GitHub profile README from drag-and-drop blocks. Live preview, undo/redo,
-shareable links, download as Markdown. Runs entirely in the browser — no backend,
-no database, no account.
+Compose a GitHub profile README from drag-and-drop blocks. Live preview,
+undo/redo, shareable links, download as Markdown. Runs entirely in the browser —
+no backend, no database, no account.
 
 ## Setup
 
@@ -78,6 +78,36 @@ app/
 Components live in feature folders but keep flat names (`<BlockCard>`, not
 `<BlocksBlockCard>`) via `components: [{ path, pathPrefix: false }]` in
 `nuxt.config.ts`. Names must stay unique across those folders.
+
+## Brand
+
+Every colour in the UI is sampled from `public/reahu.png` — the violet and azure
+brackets and the navy eclipse between them:
+
+| Token | Value | From |
+| --- | --- | --- |
+| `violet-500` (primary) | `#6C20FF` | left bracket |
+| `sky-500` (secondary) | `#009CFF` | right bracket |
+| `slate-950` (surface) | `#001038` | the eclipse form |
+
+The neutral ramp is tinted toward that navy rather than using a stock grey, so
+dark mode reads as the same family as the mark. Ramps are defined in
+`app/assets/css/main.css` and aliased in `app/app.config.ts`.
+
+Type is Bricolage Grotesque for display, Public Sans for body, and JetBrains
+Mono for code and section labels — all self-hosted at build time by
+`@nuxt/fonts`, which ships with Nuxt UI, so there is no CDN request at runtime.
+
+The `.corona` class is the recurring motif: a masked one-pixel violet-to-azure
+gradient border, used on the hero disc, the closing call to action, and the
+builder's preview panel.
+
+Derived assets (`favicon.png`, `apple-touch-icon.png`, `og-image.jpg`) are
+generated from the logo. To regenerate after changing it:
+
+```bash
+sips -Z 64 public/reahu.png --out public/favicon.png && sips -Z 180 public/reahu.png --out public/apple-touch-icon.png
+```
 
 ### Adding a block type
 
