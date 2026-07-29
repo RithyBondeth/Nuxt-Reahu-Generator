@@ -432,6 +432,436 @@ export const README_TEMPLATES: ReadmeTemplate[] = [
         style: 'flat-square'
       })
     ]
+  },
+  {
+    slug: 'backend-blueprint',
+    name: 'Backend Blueprint',
+    category: 'Developer',
+    description: 'A systems-focused profile built around architecture, APIs, reliability, and measurable engineering work.',
+    audience: 'Backend and platform engineers',
+    accent: '#79C0FF',
+    blocks: () => [
+      templateBlock('header', {
+        name: 'Elias Brooks',
+        tagline: 'Backend engineer designing systems that stay boring in production.',
+        username: 'octocat',
+        align: 'left',
+        showFollowers: true,
+        showStars: true,
+        badgeColor: '79C0FF',
+        badgeStyle: 'flat-square'
+      }),
+      templateBlock('about', {
+        heading: 'Engineering dependable systems',
+        intro: 'I work on the services, data models, and operational details behind reliable products.',
+        bullets: [
+          'Designing versioned APIs and event-driven workflows',
+          'Improving latency, observability, and failure recovery',
+          'Writing architecture notes that help teams make better decisions'
+        ],
+        quote: 'The best infrastructure gives product teams fewer things to worry about.'
+      }),
+      templateBlock('techStack', {
+        heading: 'Core stack',
+        icons: ['go', 'python', 'nodejs', 'postgres', 'redis', 'kafka', 'docker', 'kubernetes'],
+        perLine: 8,
+        provider: 'badges',
+        badgeStyle: 'flat-square',
+        align: 'left'
+      }),
+      templateBlock('table', {
+        heading: 'Systems shipped',
+        columns: ['System', 'Responsibility', 'Impact'],
+        rows: [
+          ['Event platform', 'Architecture and delivery', 'Processed 40M events/day'],
+          ['Billing API', 'Reliability lead', 'Reduced failed jobs by 72%'],
+          ['Developer platform', 'Core contributor', 'Cut service setup to 15 minutes']
+        ]
+      }),
+      templateBlock('activity', {
+        username: 'octocat',
+        theme: 'github-dark',
+        days: 31,
+        height: 260,
+        hideTitle: true,
+        align: 'left'
+      }),
+      templateBlock('repos', {
+        username: 'octocat',
+        repos: ['Hello-World', 'Spoon-Knife'],
+        theme: 'github_dark_dimmed',
+        hideBorder: false,
+        align: 'left'
+      }),
+      templateBlock('socials', {
+        heading: 'Get in touch',
+        links: [
+          { platform: 'github', value: 'octocat' },
+          { platform: 'linkedin', value: 'elias-brooks' },
+          { platform: 'email', value: 'elias@example.com' }
+        ],
+        align: 'left',
+        style: 'flat-square'
+      })
+    ]
+  },
+  {
+    slug: 'mobile-momentum',
+    name: 'Mobile Momentum',
+    category: 'Developer',
+    description: 'A polished mobile-engineering profile with product outcomes, platform skills, and shipped apps.',
+    audience: 'iOS, Android, and Flutter developers',
+    accent: '#BC8CFF',
+    blocks: () => [
+      templateBlock('banner', {
+        shape: 'cylinder',
+        text: 'Amina Yusuf',
+        subtext: 'Mobile engineer · delightful apps, dependable releases',
+        colorFrom: '7C3AED',
+        colorTo: 'EC4899',
+        height: 190,
+        fontSize: 44,
+        fontAlignY: 39,
+        animation: 'fadeIn'
+      }),
+      templateBlock('typing', {
+        lines: ['Building for the small screen', 'Obsessing over smooth interactions', 'Shipping with confidence'],
+        font: 'Ubuntu Mono',
+        color: 'BC8CFF',
+        size: 25
+      }),
+      templateBlock('about', {
+        heading: 'Product craft in your pocket',
+        intro: 'I build mobile experiences that feel native, accessible, and resilient on real-world networks.',
+        bullets: [
+          'Leading Flutter features from prototype to store release',
+          'Improving startup time and offline behavior',
+          'Building reusable UI foundations across product teams'
+        ]
+      }),
+      templateBlock('techStack', {
+        heading: 'Mobile toolkit',
+        icons: ['flutter', 'dart', 'kotlin', 'swift', 'androidstudio', 'firebase', 'figma', 'git'],
+        perLine: 8
+      }),
+      templateBlock('table', {
+        heading: 'Apps shipped',
+        columns: ['Product', 'Contribution', 'Highlight'],
+        rows: [
+          ['Pocket Local', 'Lead mobile engineer', 'Offline-first city guides'],
+          ['Pulse', 'Flutter developer', 'Accessible health tracking'],
+          ['Relay', 'Platform contributor', 'Shared design system']
+        ]
+      }),
+      templateBlock('stats', {
+        username: 'octocat',
+        theme: 'midnight-purple',
+        showStreak: true,
+        hideBorder: false
+      }),
+      templateBlock('socials', {
+        heading: 'Follow the builds',
+        links: [
+          { platform: 'github', value: 'octocat' },
+          { platform: 'linkedin', value: 'amina-yusuf' },
+          { platform: 'medium', value: 'aminabuilds' },
+          { platform: 'website', value: 'https://example.com' }
+        ],
+        style: 'flat-square'
+      })
+    ]
+  },
+  {
+    slug: 'cloud-control-room',
+    name: 'Cloud Control Room',
+    category: 'Developer',
+    description: 'An operations-led profile for showing cloud platforms, automation, observability, and uptime wins.',
+    audience: 'DevOps, SRE, and cloud engineers',
+    accent: '#56D364',
+    featured: true,
+    blocks: () => [
+      templateBlock('banner', {
+        shape: 'slice',
+        text: 'Marcus Reed',
+        subtext: 'Site reliability engineer',
+        colorFrom: '0D1117',
+        colorTo: '238636',
+        height: 175,
+        fontSize: 44,
+        animation: 'scaleIn'
+      }),
+      templateBlock('badges', {
+        heading: '',
+        items: [
+          { label: 'Uptime', message: '99.99%', color: '238636', logo: 'statuspage', href: '' },
+          { label: 'On-call', message: 'Human first', color: '58A6FF', logo: 'pagerduty', href: '' },
+          { label: 'Changes', message: 'Automated', color: 'A371F7', logo: 'githubactions', href: '' }
+        ],
+        style: 'flat-square'
+      }),
+      templateBlock('about', {
+        heading: 'Reliable by design',
+        intro: 'I build cloud platforms that make the safe path the easy path.',
+        bullets: [
+          'Operating multi-region services with practical SLOs',
+          'Automating delivery, policy, and infrastructure changes',
+          'Turning incidents into durable system improvements'
+        ]
+      }),
+      templateBlock('techStack', {
+        heading: 'Control room',
+        icons: ['linux', 'aws', 'kubernetes', 'docker', 'terraform', 'ansible', 'githubactions', 'prometheus', 'grafana', 'sentry'],
+        perLine: 10,
+        provider: 'badges',
+        badgeStyle: 'flat-square'
+      }),
+      templateBlock('table', {
+        heading: 'Operational outcomes',
+        columns: ['Initiative', 'What changed', 'Outcome'],
+        rows: [
+          ['Progressive delivery', 'Automated canaries and rollback', '41% fewer incidents'],
+          ['Golden signals', 'Unified service dashboards', 'MTTR down to 18 min'],
+          ['Platform templates', 'Secure defaults as code', '3× faster onboarding']
+        ]
+      }),
+      templateBlock('activity', {
+        username: 'octocat',
+        theme: 'green',
+        days: 60,
+        area: true,
+        height: 270
+      }),
+      templateBlock('stats', {
+        username: 'octocat',
+        theme: 'github_dark',
+        showTopLangs: false,
+        showStreak: true,
+        hideBorder: false
+      }),
+      templateBlock('socials', {
+        heading: 'Connect',
+        links: [
+          { platform: 'github', value: 'octocat' },
+          { platform: 'linkedin', value: 'marcus-reed' },
+          { platform: 'devto', value: 'marcusops' }
+        ],
+        style: 'flat-square'
+      })
+    ]
+  },
+  {
+    slug: 'research-ledger',
+    name: 'Research Ledger',
+    category: 'Data',
+    description: 'A citation-friendly academic profile for research interests, publications, methods, and reproducible work.',
+    audience: 'Researchers and graduate students',
+    accent: '#2F81F7',
+    blocks: () => [
+      templateBlock('header', {
+        name: 'Dr. Lena Ortiz',
+        tagline: 'Computational social scientist · open and reproducible research',
+        username: 'octocat',
+        align: 'left',
+        showFollowers: true,
+        badgeColor: '2F81F7',
+        badgeStyle: 'flat'
+      }),
+      templateBlock('about', {
+        heading: 'Research focus',
+        intro: 'I study how people find, evaluate, and share information in online communities.',
+        bullets: [
+          'Computational methods for social and behavioral data',
+          'Transparent research software and reproducible pipelines',
+          'Human-centered evaluation of machine learning systems'
+        ],
+        align: 'left'
+      }),
+      templateBlock('techStack', {
+        heading: 'Methods and tools',
+        icons: ['python', 'r', 'julia', 'postgres', 'pytorch', 'sklearn', 'latex', 'git'],
+        perLine: 8,
+        theme: 'light',
+        align: 'left'
+      }),
+      templateBlock('table', {
+        heading: 'Selected publications',
+        columns: ['Year', 'Work', 'Venue'],
+        rows: [
+          ['2026', 'Tracing trust across community networks', 'CSCW'],
+          ['2025', 'Auditing evidence in generated answers', 'FAccT'],
+          ['2024', 'Reproducible pipelines for public datasets', 'JOSS']
+        ]
+      }),
+      templateBlock('badges', {
+        heading: 'Research principles',
+        items: [
+          { label: '', message: 'Open data', color: '2F81F7', logo: 'dataverse', href: '' },
+          { label: '', message: 'Open methods', color: '1F883D', logo: 'openaccess', href: '' },
+          { label: '', message: 'Reproducible', color: '8250DF', logo: 'github', href: '' }
+        ],
+        style: 'flat'
+      }),
+      templateBlock('socials', {
+        heading: 'Profiles',
+        links: [
+          { platform: 'github', value: 'octocat' },
+          { platform: 'scholar', value: 'example' },
+          { platform: 'orcid', value: '0000-0000-0000-0000' },
+          { platform: 'researchgate', value: 'profile/Lena-Ortiz' },
+          { platform: 'email', value: 'lena@example.edu' }
+        ],
+        align: 'left',
+        style: 'flat'
+      })
+    ]
+  },
+  {
+    slug: 'freelance-studio',
+    name: 'Freelance Studio',
+    category: 'Creator',
+    description: 'A client-ready profile that clearly presents services, proof, availability, and the next step.',
+    audience: 'Freelancers and consultants',
+    accent: '#FF9B73',
+    blocks: () => [
+      templateBlock('header', {
+        name: 'Nia Campbell',
+        tagline: 'Independent designer and frontend developer helping small teams ship.',
+        username: 'octocat',
+        align: 'left',
+        showVisitorBadge: false,
+        showFollowers: true,
+        badgeColor: 'FF9B73',
+        badgeStyle: 'flat-square'
+      }),
+      templateBlock('badges', {
+        heading: '',
+        items: [
+          { label: 'Availability', message: 'October 2026', color: '1F883D', logo: 'googlecalendar', href: '' },
+          { label: 'Timezone', message: 'UTC +1', color: '2F81F7', logo: 'clockify', href: '' },
+          { label: 'Projects', message: 'Remote', color: '8250DF', logo: 'zoom', href: '' }
+        ],
+        style: 'flat-square',
+        align: 'left'
+      }),
+      templateBlock('about', {
+        heading: 'How I can help',
+        intro: 'I partner with focused teams to turn early ideas and rough interfaces into polished, maintainable products.',
+        bullets: [
+          'Product UI design and interactive prototyping',
+          'Frontend implementation with Vue or React',
+          'Design-system foundations and accessibility reviews'
+        ],
+        quote: 'Small team, direct communication, no handoff maze.'
+      }),
+      templateBlock('table', {
+        heading: 'Recent client work',
+        columns: ['Engagement', 'Scope', 'Result'],
+        rows: [
+          ['Fintech dashboard', 'Product design + Vue', 'Launched in 10 weeks'],
+          ['Healthcare portal', 'Accessibility overhaul', 'Reached WCAG AA'],
+          ['SaaS design system', 'Audit + implementation', '34 shared components']
+        ]
+      }),
+      templateBlock('techStack', {
+        heading: 'Tools',
+        icons: ['figma', 'ts', 'vue', 'react', 'nuxtjs', 'tailwind', 'vite', 'git'],
+        perLine: 8,
+        theme: 'light',
+        align: 'left'
+      }),
+      templateBlock('socials', {
+        heading: 'Start a conversation',
+        links: [
+          { platform: 'website', value: 'https://example.com' },
+          { platform: 'linkedin', value: 'nia-campbell' },
+          { platform: 'calendly', value: 'nia-campbell/intro' },
+          { platform: 'email', value: 'hello@example.com' }
+        ],
+        align: 'left',
+        style: 'flat-square'
+      })
+    ]
+  },
+  {
+    slug: 'indie-launch',
+    name: 'Indie Launch',
+    category: 'Creator',
+    description: 'A high-energy maker profile for products, experiments, public metrics, and building in public.',
+    audience: 'Indie hackers and product founders',
+    accent: '#F2CC60',
+    blocks: () => [
+      templateBlock('banner', {
+        shape: 'waving',
+        text: 'Ravi Shah',
+        subtext: 'Small products. Real customers. Constant learning.',
+        colorFrom: 'D29922',
+        colorTo: '8250DF',
+        height: 195,
+        fontSize: 43,
+        fontAlignY: 38,
+        animation: 'twinkling'
+      }),
+      templateBlock('typing', {
+        lines: ['Building useful internet businesses', 'Sharing the numbers and lessons', 'Currently shipping: TinyDesk'],
+        font: 'Ubuntu Mono',
+        color: 'F2CC60',
+        size: 25
+      }),
+      templateBlock('badges', {
+        heading: '',
+        items: [
+          { label: 'Products', message: '4 shipped', color: '8250DF', logo: 'producthunt', href: '' },
+          { label: 'Users', message: '2.4k', color: '2F81F7', logo: 'googleanalytics', href: '' },
+          { label: 'Mode', message: 'Bootstrapped', color: 'D29922', logo: 'rocket', href: '' }
+        ],
+        style: 'for-the-badge'
+      }),
+      templateBlock('about', {
+        heading: 'What I’m building',
+        intro: 'I make small software products for independent teams and document the decisions behind them.',
+        bullets: [
+          'TinyDesk — a lightweight customer inbox',
+          'Launch Notes — changelogs people actually read',
+          'Weekly build notes with honest numbers'
+        ]
+      }),
+      templateBlock('table', {
+        heading: 'Product shelf',
+        columns: ['Product', 'For', 'Status'],
+        rows: [
+          ['TinyDesk', 'Small support teams', 'Growing'],
+          ['Launch Notes', 'Indie SaaS founders', 'Profitable'],
+          ['Minute Page', 'Fast product validation', 'Experiment']
+        ]
+      }),
+      templateBlock('techStack', {
+        heading: 'Built lean with',
+        icons: ['ts', 'nextjs', 'tailwind', 'postgres', 'supabase', 'vercel', 'figma', 'github'],
+        perLine: 8
+      }),
+      templateBlock('stats', {
+        username: 'octocat',
+        theme: 'gruvbox',
+        showStreak: true,
+        hideBorder: false
+      }),
+      templateBlock('socials', {
+        heading: 'Build in public with me',
+        links: [
+          { platform: 'github', value: 'octocat' },
+          { platform: 'x', value: 'ravibuilds' },
+          { platform: 'producthunt', value: 'ravishah' },
+          { platform: 'substack', value: 'ravibuilds.example.com' }
+        ],
+        style: 'for-the-badge'
+      }),
+      templateBlock('support', {
+        heading: 'Enjoy the experiments?',
+        text: 'Coffee powers the next tiny product.',
+        links: [{ platform: 'buymeacoffee', value: 'ravibuilds' }],
+        style: 'flat-square'
+      })
+    ]
   }
 ]
 

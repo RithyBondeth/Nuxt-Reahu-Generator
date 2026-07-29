@@ -9,7 +9,9 @@ const props = defineProps<{
 const blocks = computed(() => props.template.blocks())
 const markdown = computed(() => renderReadme(blocks.value))
 const previewTheme = computed<'light' | 'dark'>(() =>
-  ['quiet-craft', 'learning-in-public'].includes(props.template.slug) ? 'light' : 'dark'
+  ['quiet-craft', 'learning-in-public', 'research-ledger', 'freelance-studio'].includes(props.template.slug)
+    ? 'light'
+    : 'dark'
 )
 </script>
 

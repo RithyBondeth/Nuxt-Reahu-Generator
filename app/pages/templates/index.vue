@@ -39,7 +39,7 @@ const visibleTemplates = computed(() =>
           </div>
           <div class="enter d-3 lg:pb-1">
             <p class="max-w-xl text-base leading-7 text-muted">
-              Six intentional README structures for different kinds of work. Preview the complete result, then edit every word, block, and detail.
+              A growing library of intentional README structures for different kinds of work. Preview the complete result, then edit every word, block, and detail.
             </p>
             <div class="mt-6 flex items-center gap-5 border-t border-default pt-5 text-xs text-dimmed">
               <span>{{ README_TEMPLATES.length }} templates</span>
