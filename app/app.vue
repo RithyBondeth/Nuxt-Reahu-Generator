@@ -18,7 +18,7 @@ useHead({
     {
       key: 'reahu-appearance',
       tagPosition: 'head',
-      innerHTML: `(function(){try{var a=localStorage.getItem('reahu:accent-theme');var f=localStorage.getItem('reahu:font-theme');if(['lime','sky','coral','violet'].includes(a))document.documentElement.dataset.accentTheme=a;if(['modern','editorial','technical','ubuntu','noto'].includes(f))document.documentElement.dataset.fontTheme=f}catch(e){}})()`
+      innerHTML: `(function(){try{var a=localStorage.getItem('reahu:accent-theme');var f=localStorage.getItem('reahu:font-theme');if(['lime','sky','coral','violet','gold','mint','pink','orange'].includes(a))document.documentElement.dataset.accentTheme=a;if(['modern','editorial','technical','ubuntu','noto'].includes(f))document.documentElement.dataset.fontTheme=f}catch(e){}})()`
     }
   ]
 })

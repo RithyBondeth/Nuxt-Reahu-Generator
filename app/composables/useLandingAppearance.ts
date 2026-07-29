@@ -22,6 +22,30 @@ export const ACCENT_THEMES = [
     label: 'Soft violet',
     description: 'Creative and calm',
     swatch: '#B79CFF'
+  },
+  {
+    id: 'gold',
+    label: 'Solar gold',
+    description: 'Optimistic and warm',
+    swatch: '#FFD75E'
+  },
+  {
+    id: 'mint',
+    label: 'Fresh mint',
+    description: 'Clean and lively',
+    swatch: '#59E6A8'
+  },
+  {
+    id: 'pink',
+    label: 'Hot pink',
+    description: 'Playful and vivid',
+    swatch: '#FF7AB8'
+  },
+  {
+    id: 'orange',
+    label: 'Tangerine',
+    description: 'Confident and bright',
+    swatch: '#FFAD5C'
   }
 ] as const
 

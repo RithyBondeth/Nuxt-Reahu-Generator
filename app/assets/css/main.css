@@ -94,6 +94,62 @@ html[data-accent-theme='violet'] {
   --color-lime-950: #2F2154;
 }
 
+html[data-accent-theme='gold'] {
+  --color-lime-50: #FFFBEA;
+  --color-lime-100: #FFF4C6;
+  --color-lime-200: #FFE98C;
+  --color-lime-300: #FFD75E;
+  --color-lime-400: #FFD75E;
+  --color-lime-500: #FFD75E;
+  --color-lime-600: #E8B82F;
+  --color-lime-700: #B9881D;
+  --color-lime-800: #93691D;
+  --color-lime-900: #79561E;
+  --color-lime-950: #452D0B;
+}
+
+html[data-accent-theme='mint'] {
+  --color-lime-50: #ECFFF7;
+  --color-lime-100: #CFFFEA;
+  --color-lime-200: #A2F8D1;
+  --color-lime-300: #76EFB9;
+  --color-lime-400: #59E6A8;
+  --color-lime-500: #59E6A8;
+  --color-lime-600: #31C886;
+  --color-lime-700: #219E69;
+  --color-lime-800: #207D57;
+  --color-lime-900: #1E664A;
+  --color-lime-950: #0D3A29;
+}
+
+html[data-accent-theme='pink'] {
+  --color-lime-50: #FFF0F7;
+  --color-lime-100: #FFE0EF;
+  --color-lime-200: #FFC1DE;
+  --color-lime-300: #FF9AC9;
+  --color-lime-400: #FF7AB8;
+  --color-lime-500: #FF7AB8;
+  --color-lime-600: #EB4C96;
+  --color-lime-700: #C72F75;
+  --color-lime-800: #A12661;
+  --color-lime-900: #852451;
+  --color-lime-950: #510C2D;
+}
+
+html[data-accent-theme='orange'] {
+  --color-lime-50: #FFF7EB;
+  --color-lime-100: #FFEACB;
+  --color-lime-200: #FFD39B;
+  --color-lime-300: #FFBC72;
+  --color-lime-400: #FFAD5C;
+  --color-lime-500: #FFAD5C;
+  --color-lime-600: #EA8733;
+  --color-lime-700: #C36522;
+  --color-lime-800: #9C4F22;
+  --color-lime-900: #7D421F;
+  --color-lime-950: #48200C;
+}
+
 html[data-font-theme='editorial'] {
   --theme-font-sans: 'Avenir Next', Avenir, 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
   --theme-font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
