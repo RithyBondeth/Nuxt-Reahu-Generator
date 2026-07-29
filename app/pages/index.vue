@@ -217,7 +217,7 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
                 Help Reahu reach more developers.
               </h3>
               <p class="mt-3 text-sm leading-6 text-muted">
-                Follow my work and star the repository. Two small GitHub actions that help this independent project grow.
+                Star the repository, follow my work, or explore the projects behind the person building Reahu.
               </p>
             </div>
 
@@ -231,16 +231,26 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
                 size="lg"
                 class="justify-center !rounded-sm"
               />
-              <UButton
-                :to="LANDING_MAKER.githubUrl"
-                target="_blank"
-                label="Follow Rithy on GitHub"
-                icon="i-lucide-user-plus"
-                trailing-icon="i-lucide-arrow-up-right"
-                color="neutral"
-                variant="outline"
-                class="justify-center !rounded-sm"
-              />
+              <div class="grid grid-cols-2 gap-2">
+                <UButton
+                  :to="LANDING_MAKER.githubUrl"
+                  target="_blank"
+                  label="Follow on GitHub"
+                  icon="i-lucide-user-plus"
+                  color="neutral"
+                  variant="outline"
+                  class="justify-center !rounded-sm"
+                />
+                <UButton
+                  :to="LANDING_MAKER.portfolioUrl"
+                  target="_blank"
+                  label="View portfolio"
+                  icon="i-lucide-globe-2"
+                  color="neutral"
+                  variant="outline"
+                  class="justify-center !rounded-sm"
+                />
+              </div>
             </div>
           </aside>
         </div>
