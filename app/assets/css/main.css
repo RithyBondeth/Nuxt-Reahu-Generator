@@ -16,3 +16,133 @@
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
 }
+
+/**
+ * Rendered README preview.
+ *
+ * Tailwind's preflight resets headings, lists, and links to nothing, so the
+ * sanitized HTML from `ReadmePreview.vue` needs its own styling. These values
+ * mirror GitHub's own Markdown rendering closely enough to be a useful preview.
+ * The two theme classes are deliberately independent of the app's colour mode —
+ * you can inspect the light rendering while working in dark mode.
+ */
+.readme-body {
+  padding: 2rem;
+  font-size: 15px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.readme-light {
+  background: #ffffff;
+  color: #1f2328;
+  --readme-border: #d1d9e0;
+  --readme-link: #0969da;
+  --readme-muted: #59636e;
+  --readme-code-bg: #eff1f3;
+}
+
+.readme-dark {
+  background: #0d1117;
+  color: #e6edf3;
+  --readme-border: #3d444d;
+  --readme-link: #4493f8;
+  --readme-muted: #9198a1;
+  --readme-code-bg: #6a737d40;
+}
+
+.readme-body > *:first-child { margin-top: 0; }
+.readme-body > *:last-child { margin-bottom: 0; }
+
+.readme-body h1,
+.readme-body h2,
+.readme-body h3,
+.readme-body h4 {
+  margin: 24px 0 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.readme-body h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid var(--readme-border); }
+.readme-body h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid var(--readme-border); }
+.readme-body h3 { font-size: 1.25em; }
+.readme-body h4 { font-size: 1em; }
+
+/* A centered header block sets its own alignment; keep the rules from fighting. */
+.readme-body div[align="center"] h1,
+.readme-body div[align="center"] h2 {
+  border-bottom: 0;
+}
+
+.readme-body p,
+.readme-body ul,
+.readme-body ol,
+.readme-body blockquote,
+.readme-body table {
+  margin: 0 0 16px;
+}
+
+.readme-body ul,
+.readme-body ol {
+  padding-left: 2em;
+}
+
+.readme-body ul { list-style: disc; }
+.readme-body ol { list-style: decimal; }
+.readme-body li { margin: .25em 0; }
+
+.readme-body a {
+  color: var(--readme-link);
+  text-decoration: none;
+}
+.readme-body a:hover { text-decoration: underline; }
+
+.readme-body img {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.readme-body code {
+  padding: .2em .4em;
+  font-size: 85%;
+  border-radius: 6px;
+  background: var(--readme-code-bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.readme-body pre {
+  padding: 16px;
+  overflow: auto;
+  border-radius: 6px;
+  background: var(--readme-code-bg);
+  margin-bottom: 16px;
+}
+.readme-body pre code { padding: 0; background: transparent; }
+
+.readme-body blockquote {
+  padding: 0 1em;
+  color: var(--readme-muted);
+  border-left: .25em solid var(--readme-border);
+}
+
+.readme-body hr {
+  height: .25em;
+  border: 0;
+  margin: 24px 0;
+  background: var(--readme-border);
+}
+
+.readme-body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+}
+.readme-body th,
+.readme-body td {
+  padding: 6px 13px;
+  border: 1px solid var(--readme-border);
+}
+.readme-body th { font-weight: 600; }
