@@ -139,11 +139,10 @@ Nuxt UI, so there is no CDN request at runtime.
 The landing page uses a compact product demo as its main visual. It mirrors the
 real two-pane builder rather than introducing a separate decorative hero.
 
-Derived assets (`apple-touch-icon.png`, `og-image.png`) are
-generated from the vector logo and social artwork.
+The browser icon uses the same blocks symbol as the live brand mark.
+The social image is generated from its source artwork.
 
 ```bash
-sips -s format png -z 180 180 public/reahu-mark.svg --out public/apple-touch-icon.png
 sips -s format png public/og-image.svg --out public/og-image.png
 ```
 

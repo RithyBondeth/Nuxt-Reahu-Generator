@@ -9,12 +9,18 @@ useHead({
     { name: 'theme-color', content: '#111111' }
   ],
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: '/reahu-mark.svg' },
-    { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=3' }
   ],
   htmlAttrs: {
     lang: 'en'
-  }
+  },
+  script: [
+    {
+      key: 'reahu-appearance',
+      tagPosition: 'head',
+      innerHTML: `(function(){try{var a=localStorage.getItem('reahu:accent-theme');var f=localStorage.getItem('reahu:font-theme');if(['lime','sky','coral','violet'].includes(a))document.documentElement.dataset.accentTheme=a;if(['modern','editorial','technical','ubuntu','noto'].includes(f))document.documentElement.dataset.fontTheme=f}catch(e){}})()`
+    }
+  ]
 })
 
 useSeoMeta({
@@ -77,6 +83,7 @@ useSeoMeta({
         </nav>
 
         <div class="ms-auto flex items-center gap-1.5">
+          <AppearancePicker />
           <UColorModeButton
             color="neutral"
             variant="ghost"
