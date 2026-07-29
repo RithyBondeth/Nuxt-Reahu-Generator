@@ -6,8 +6,7 @@ useHead({
   titleTemplate: chunk => (chunk ? `${chunk} · ${title}` : title),
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    // Tints mobile browser chrome with the eclipse navy from the logo.
-    { name: 'theme-color', content: '#001038' }
+    { name: 'theme-color', content: '#0A0A0B' }
   ],
   link: [
     { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -38,49 +37,76 @@ useSeoMeta({
 
 <template>
   <UApp>
-    <UHeader :ui="{ root: 'border-default/60' }">
-      <template #left>
+    <header class="site-header sticky top-0 z-50">
+      <UContainer class="flex h-16 max-w-[90rem] items-center gap-4">
         <NuxtLink
           to="/"
           class="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           <BrandMark />
         </NuxtLink>
-      </template>
 
-      <template #right>
-        <UColorModeButton />
+        <nav
+          class="site-nav absolute left-1/2 hidden -translate-x-1/2 items-center p-1 md:flex"
+          aria-label="Primary navigation"
+        >
+          <NuxtLink
+            to="/"
+            class="site-nav__link"
+          >
+            Overview
+          </NuxtLink>
+          <NuxtLink
+            to="/#blocks"
+            class="site-nav__link"
+          >
+            Blocks
+          </NuxtLink>
+          <NuxtLink
+            to="/build"
+            class="site-nav__link"
+          >
+            Builder
+          </NuxtLink>
+        </nav>
 
-        <UButton
-          to="/build"
-          label="Open builder"
-          trailing-icon="i-lucide-arrow-right"
-          size="sm"
-        />
-      </template>
-    </UHeader>
+        <div class="ms-auto flex items-center gap-1.5">
+          <UColorModeButton
+            color="neutral"
+            variant="ghost"
+          />
+          <UButton
+            to="https://github.com/RithyBondeth/Nuxt-Reahu-Generator"
+            target="_blank"
+            icon="i-simple-icons-github"
+            aria-label="Reahu on GitHub"
+            color="neutral"
+            variant="ghost"
+            class="hidden sm:inline-flex"
+          />
+          <UButton
+            to="/build"
+            label="Build yours"
+            trailing-icon="i-lucide-arrow-up-right"
+            size="sm"
+            class="ms-1"
+          />
+        </div>
+      </UContainer>
+    </header>
 
     <UMain>
       <NuxtPage />
     </UMain>
 
-    <UFooter :ui="{ root: 'border-t border-default/60' }">
-      <template #left>
-        <p class="text-sm text-muted">
-          Runs entirely in your browser · © {{ new Date().getFullYear() }}
-        </p>
-      </template>
-
-      <template #right>
-        <UButton
-          to="https://github.com/RithyBondeth/Nuxt-Reahu-Generator"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="Source on GitHub"
-          color="neutral"
-          variant="ghost"
-        />
-      </template>
-    </UFooter>
+    <footer class="border-t border-default">
+      <UContainer class="flex max-w-[90rem] flex-col gap-4 py-8 text-sm text-muted sm:flex-row sm:items-center">
+        <BrandMark :wordmark="false" />
+        <p>Markdown in. Markdown out. Nothing leaves your browser.</p>
+        <div class="sm:ms-auto">
+          © {{ new Date().getFullYear() }} Reahu
+        </div>
+      </UContainer>
+    </footer>
   </UApp>
 </template>

@@ -75,8 +75,9 @@ watch(open, (isOpen) => {
       icon="i-lucide-plus"
       label="Add block"
       color="neutral"
-      variant="subtle"
+      variant="outline"
       block
+      class="border-dashed"
     />
 
     <template #body>

@@ -24,18 +24,18 @@ const stripUrl = `${SERVICES.skillIcons}?i=${STRIP.join(',')}&perline=${STRIP.le
 </script>
 
 <template>
-  <div class="marquee overflow-hidden py-1">
+  <div class="marquee overflow-hidden">
     <div class="marquee__track">
       <img
         :src="stripUrl"
         alt="Tools you can add to the tech stack block"
-        class="h-12 w-auto max-w-none opacity-80 sm:h-14"
+        class="h-10 w-auto max-w-none grayscale opacity-55 transition hover:grayscale-0 hover:opacity-90 sm:h-11"
       >
       <img
         :src="stripUrl"
         alt=""
         aria-hidden="true"
-        class="h-12 w-auto max-w-none opacity-80 sm:h-14"
+        class="h-10 w-auto max-w-none grayscale opacity-55 sm:h-11"
       >
     </div>
   </div>

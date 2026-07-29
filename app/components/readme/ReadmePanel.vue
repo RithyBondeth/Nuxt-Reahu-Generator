@@ -11,9 +11,7 @@ const theme = ref<'light' | 'dark'>('dark')
 
 <template>
   <section class="lg:sticky lg:top-20">
-    <!-- `corona` echoes the hero's eclipse ring: this panel holds the document,
-         so it gets the motif. Everything else on this page stays quiet. -->
-    <div class="corona overflow-hidden rounded-xl">
+    <div class="overflow-hidden rounded-xl border border-default bg-default shadow-sm">
       <ReadmeToolbar
         v-model:mode="mode"
         v-model:theme="theme"
@@ -32,7 +30,7 @@ const theme = ref<'light' | 'dark'>('dark')
       </div>
     </div>
 
-    <p class="mt-2 text-xs text-dimmed">
+    <p class="mt-3 px-1 text-xs leading-5 text-dimmed">
       Save as <code class="text-default">README.md</code> in a repo named exactly your GitHub username to make it your profile.
     </p>
   </section>

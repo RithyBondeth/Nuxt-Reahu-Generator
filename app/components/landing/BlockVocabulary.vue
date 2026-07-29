@@ -16,34 +16,24 @@ const delay = (index: number) => Math.min(index, STAGGER_CAP) * STAGGER_STEP
 </script>
 
 <template>
-  <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+  <ul class="border-t border-default">
     <li
       v-for="(type, index) in BLOCK_ORDER"
       :key="type"
       v-reveal="delay(index)"
-      class="reveal lift group relative overflow-hidden rounded-2xl border border-default bg-elevated/40 p-5 backdrop-blur-sm"
+      class="reveal group grid grid-cols-[2.5rem_1fr_auto] items-start gap-3 border-b border-default py-5 sm:grid-cols-[3rem_12rem_1fr_auto]"
     >
-      <!-- A wash of corona light that arrives with the pointer. -->
-      <div
-        class="pointer-events-none absolute -right-8 -top-8 size-24 rounded-full bg-primary/25 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-        aria-hidden="true"
+      <span class="font-mono text-xs text-dimmed">{{ String(index + 1).padStart(2, '0') }}</span>
+      <h3 class="text-sm font-semibold">
+        {{ BLOCK_DEFINITIONS[type].label }}
+      </h3>
+      <p class="col-span-2 text-sm text-muted sm:col-span-1">
+        {{ BLOCK_DEFINITIONS[type].description }}
+      </p>
+      <UIcon
+        :name="BLOCK_DEFINITIONS[type].icon"
+        class="size-4 text-dimmed transition-colors group-hover:text-primary"
       />
-
-      <div class="relative">
-        <span class="inline-flex size-9 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/20">
-          <UIcon
-            :name="BLOCK_DEFINITIONS[type].icon"
-            class="size-4.5 text-primary"
-          />
-        </span>
-
-        <h3 class="mt-3.5 text-sm font-semibold">
-          {{ BLOCK_DEFINITIONS[type].label }}
-        </h3>
-        <p class="mt-1 text-sm text-muted">
-          {{ BLOCK_DEFINITIONS[type].description }}
-        </p>
-      </div>
     </li>
   </ul>
 </template>

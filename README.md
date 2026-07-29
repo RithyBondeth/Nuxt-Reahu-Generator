@@ -117,26 +117,25 @@ composition rather than markup.
 
 ## Brand
 
-Every colour in the UI is sampled from `public/reahu.png` — the violet and azure
-brackets and the navy eclipse between them:
+The two accents are sampled from `public/reahu.png`; a restrained graphite ramp
+keeps the interface neutral enough for the violet and azure brackets to lead:
 
 | Token | Value | From |
 | --- | --- | --- |
 | `violet-500` (primary) | `#6C20FF` | left bracket |
 | `sky-500` (secondary) | `#009CFF` | right bracket |
-| `slate-950` (surface) | `#001038` | the eclipse form |
+| `slate-950` (surface) | `#0A0A0B` | graphite interface |
 
-The neutral ramp is tinted toward that navy rather than using a stock grey, so
-dark mode reads as the same family as the mark. Ramps are defined in
-`app/assets/css/main.css` and aliased in `app/app.config.ts`.
+Ramps are defined in `app/assets/css/main.css` and aliased in
+`app/app.config.ts`. Hairline borders and quiet grid lines provide structure;
+brand colour is reserved for active controls and primary actions.
 
 Type is Bricolage Grotesque for display, Public Sans for body, and JetBrains
 Mono for code and section labels — all self-hosted at build time by
 `@nuxt/fonts`, which ships with Nuxt UI, so there is no CDN request at runtime.
 
-The `.corona` class is the recurring motif: a masked one-pixel violet-to-azure
-gradient border, used on the hero disc, the closing call to action, and the
-builder's preview panel.
+The landing page uses a compact product demo as its main visual. It mirrors the
+real two-pane builder rather than introducing a separate decorative hero.
 
 Derived assets (`favicon.png`, `apple-touch-icon.png`, `og-image.jpg`) are
 generated from the logo. To regenerate after changing it:

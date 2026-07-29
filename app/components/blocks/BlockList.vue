@@ -6,9 +6,9 @@ const { blocks } = useReadme()
 
 <template>
   <section class="space-y-3">
-    <div class="flex items-center justify-between gap-2">
-      <h2 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-dimmed">
-        Blocks
+    <div class="flex items-center justify-between gap-2 px-1">
+      <h2 class="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-dimmed">
+        Document
         <UBadge
           :label="String(blocks.length)"
           color="neutral"

@@ -6,13 +6,15 @@ const props = defineProps<{ block: Block, index: number, total: number }>()
 
 const { remove, duplicate, move } = useReadme()
 
-const open = ref(true)
+// Keep a new document scannable: the first block opens as the obvious starting
+// point and the rest stay one compact row away.
+const open = ref(props.index === 0)
 const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
 </script>
 
 <template>
   <div class="block-card">
-    <header class="flex items-center gap-2 px-2 py-2">
+    <header class="flex items-center gap-2 px-2.5 py-2.5">
       <UIcon
         name="i-lucide-grip-vertical"
         class="drag-handle size-5 shrink-0 cursor-grab text-dimmed transition-colors hover:text-default active:cursor-grabbing"
@@ -23,10 +25,12 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
         :aria-expanded="open"
         @click="open = !open"
       >
-        <UIcon
-          :name="definition.icon"
-          class="size-4 shrink-0 text-primary"
-        />
+        <span class="block-card__icon">
+          <UIcon
+            :name="definition.icon"
+            class="size-3.5 shrink-0"
+          />
+        </span>
         <span class="truncate text-sm font-medium">{{ definition.label }}</span>
         <UIcon
           name="i-lucide-chevron-down"
@@ -83,7 +87,7 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
       :class="{ 'is-open': open }"
     >
       <div class="disclosure__inner">
-        <div class="border-t border-default px-3 py-3">
+        <div class="border-t border-default bg-default/35 px-3 py-4">
           <BlockEditor :block="block" />
         </div>
       </div>
