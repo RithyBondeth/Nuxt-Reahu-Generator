@@ -47,6 +47,13 @@ export function useBlockCollection() {
     blocks.value = starterBlocks()
   }
 
+  function replace(nextBlocks: Block[]) {
+    // Template factories already mint fresh IDs. The JSON round-trip removes
+    // reactive proxies when this is called with a document from elsewhere.
+    blocks.value = JSON.parse(JSON.stringify(nextBlocks)) as Block[]
+    clearHistory()
+  }
+
   return {
     blocks,
     add,
@@ -54,6 +61,7 @@ export function useBlockCollection() {
     duplicate,
     move,
     reset,
+    replace,
     undo,
     redo,
     canUndo,

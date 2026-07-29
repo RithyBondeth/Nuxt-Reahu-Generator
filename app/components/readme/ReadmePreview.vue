@@ -17,12 +17,18 @@ const md = new MarkdownIt({ html: true, linkify: true })
  * whole document in the URL fragment, so this content is not always the
  * viewer's own.
  */
-const html = computed(() =>
-  DOMPurify.sanitize(md.render(props.source), {
+const html = computed(() => {
+  const rendered = md.render(props.source)
+
+  // Server-rendered template previews only contain Markdown produced by our
+  // typed renderers. Shared and edited documents are sanitized in the browser.
+  if (import.meta.server) return rendered
+
+  return DOMPurify.sanitize(rendered, {
     ADD_TAGS: ['picture', 'source'],
     ADD_ATTR: ['align', 'width', 'height', 'srcset', 'media', 'target']
   })
-)
+})
 </script>
 
 <template>

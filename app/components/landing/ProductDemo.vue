@@ -85,7 +85,7 @@ function removeBlock(id: DemoBlockKind) {
   <div class="workbench-preview enter-bloom d-6">
     <div class="workbench-preview__bar">
       <div class="flex items-center gap-2">
-        <span class="grid size-5 place-items-center bg-primary text-[10px] font-bold text-[#111111]">R</span>
+        <span class="grid size-5 place-items-center bg-primary text-[10px] font-bold text-slate-950">R</span>
         <span class="text-xs font-medium">profile.readme</span>
       </div>
       <span class="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.14em] text-muted">

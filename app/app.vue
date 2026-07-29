@@ -24,14 +24,14 @@ useSeoMeta({
   ogSiteName: title,
   ogTitle: title,
   ogDescription: description,
-  ogImage: '/og-image.png',
+  ogImage: '/og-templates.png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
   ogImageAlt: 'Reahu Generator',
   twitterCard: 'summary_large_image',
   twitterTitle: title,
   twitterDescription: description,
-  twitterImage: '/og-image.png'
+  twitterImage: '/og-templates.png'
 })
 </script>
 
@@ -61,6 +61,12 @@ useSeoMeta({
             class="site-nav__link"
           >
             Blocks
+          </NuxtLink>
+          <NuxtLink
+            to="/templates"
+            class="site-nav__link"
+          >
+            Templates
           </NuxtLink>
           <NuxtLink
             to="/build"

@@ -29,6 +29,8 @@ export default defineNuxtConfig({
   routeRules: {
     // Landing page is static — good for SEO and free to serve.
     '/': { prerender: true },
+    '/templates': { prerender: true },
+    '/templates/**': { prerender: true },
     // The builder reads localStorage + the URL hash on boot. Rendering it on the
     // server would hydrate against state the server cannot see, so it is SPA-only.
     '/build': { ssr: false }

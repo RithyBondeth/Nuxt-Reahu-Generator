@@ -1,10 +1,33 @@
 <script setup lang="ts">
+import { getReadmeTemplate } from '~/core/templates'
+
 useSeoMeta({
   title: 'Builder',
   description: 'Compose your GitHub profile README from drag-and-drop blocks.'
 })
 
-const { undo, redo } = useReadme()
+const route = useRoute()
+const router = useRouter()
+const toast = useToast()
+const { undo, redo, replace } = useReadme()
+
+onMounted(async () => {
+  const slug = typeof route.query.template === 'string' ? route.query.template : ''
+  const template = getReadmeTemplate(slug)
+  if (!template) return
+
+  replace(template.blocks())
+  toast.add({
+    title: `${template.name} loaded`,
+    description: 'Every section is ready for you to edit.',
+    icon: 'i-lucide-layout-template',
+    color: 'primary'
+  })
+
+  // Remove the instruction after applying it, so refreshing later preserves
+  // the user's edits instead of restoring the original template.
+  await router.replace({ path: '/build' })
+})
 
 // Registered at the page level so the shortcuts are scoped to the builder.
 defineShortcuts({
