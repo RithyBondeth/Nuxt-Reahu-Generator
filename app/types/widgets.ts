@@ -57,7 +57,7 @@ export type TypingFont
     | 'Inter'
     | 'Montserrat'
     | 'Playfair Display'
-    | 'Noto Sans'
+    | 'Ubuntu'
 
 /** Shapes a divider block can draw. */
 export type DividerStyle = 'gradient' | 'wave' | 'rule' | 'glow' | 'blank'

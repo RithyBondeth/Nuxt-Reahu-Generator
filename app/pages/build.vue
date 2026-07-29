@@ -14,32 +14,37 @@ defineShortcuts({
 </script>
 
 <template>
-  <div class="builder-page min-h-[calc(100vh-4rem)]">
-    <UContainer class="max-w-[90rem] py-8 sm:py-10">
-      <div class="mb-8 flex flex-col gap-4 border-b border-default pb-7 sm:flex-row sm:items-end sm:justify-between">
+  <div class="builder-page min-h-[calc(100vh-3.5rem)]">
+    <UContainer class="max-w-[96rem] py-6 sm:py-8">
+      <div class="builder-masthead">
         <div>
-          <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+          <div class="eyebrow flex items-center gap-2 text-muted">
             <span
               class="status-dot"
               aria-hidden="true"
             />
             Saved locally
           </div>
-          <h1 class="display mt-3 text-3xl sm:text-4xl">
-            README builder
+          <h1 class="display mt-3 text-3xl sm:text-5xl">
+            Compose your profile.
           </h1>
-          <p class="mt-2 text-sm text-muted">
-            Shape the document on the left. See the final Markdown on the right.
+          <p class="mt-3 max-w-xl text-sm leading-6 text-muted">
+            Arrange the story on the left. Review exactly what GitHub will render on the right.
           </p>
         </div>
-        <p class="hidden font-mono text-xs text-dimmed sm:block">
-          ⌘Z to undo · drag to reorder
-        </p>
+        <div class="builder-shortcuts">
+          <span><kbd>⌘ Z</kbd> undo</span>
+          <span><kbd>drag</kbd> reorder</span>
+        </div>
       </div>
 
-      <div class="grid gap-6 lg:grid-cols-[minmax(0,27rem)_minmax(0,1fr)] lg:items-start">
-        <BlockList />
-        <ReadmePanel />
+      <div class="builder-workspace">
+        <aside class="builder-sidebar">
+          <BlockList />
+        </aside>
+        <main class="builder-canvas">
+          <ReadmePanel />
+        </main>
       </div>
     </UContainer>
   </div>

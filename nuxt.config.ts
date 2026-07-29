@@ -19,8 +19,8 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // The interface is designed against the eclipse navy first; light mode still
-  // works and the toggle stays, but dark is the intended presentation.
+  // The graphite-and-lime interface is designed dark-first. Light mode remains
+  // fully supported and can be selected from the persistent header control.
   colorMode: {
     preference: 'dark',
     fallback: 'dark'

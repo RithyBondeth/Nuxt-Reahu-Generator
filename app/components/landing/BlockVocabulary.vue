@@ -16,24 +16,28 @@ const delay = (index: number) => Math.min(index, STAGGER_CAP) * STAGGER_STEP
 </script>
 
 <template>
-  <ul class="border-t border-default">
+  <ul class="vocabulary-grid">
     <li
       v-for="(type, index) in BLOCK_ORDER"
       :key="type"
       v-reveal="delay(index)"
-      class="reveal group grid grid-cols-[2.5rem_1fr_auto] items-start gap-3 border-b border-default py-5 sm:grid-cols-[3rem_12rem_1fr_auto]"
+      class="vocabulary-card reveal group"
     >
-      <span class="font-mono text-xs text-dimmed">{{ String(index + 1).padStart(2, '0') }}</span>
-      <h3 class="text-sm font-semibold">
+      <div class="flex items-start justify-between">
+        <span class="font-mono text-xs text-dimmed">{{ String(index + 1).padStart(2, '0') }}</span>
+        <span class="vocabulary-card__icon">
+          <UIcon
+            :name="BLOCK_DEFINITIONS[type].icon"
+            class="size-4"
+          />
+        </span>
+      </div>
+      <h3 class="mt-10 text-base font-semibold">
         {{ BLOCK_DEFINITIONS[type].label }}
       </h3>
-      <p class="col-span-2 text-sm text-muted sm:col-span-1">
+      <p class="mt-2 text-sm leading-6 text-muted">
         {{ BLOCK_DEFINITIONS[type].description }}
       </p>
-      <UIcon
-        :name="BLOCK_DEFINITIONS[type].icon"
-        class="size-4 text-dimmed transition-colors group-hover:text-primary"
-      />
     </li>
   </ul>
 </template>

@@ -62,7 +62,7 @@ const TYPING_FONT_NAMES: TypingFont[] = [
   'Poppins',
   'Montserrat',
   'Playfair Display',
-  'Noto Sans'
+  'Ubuntu'
 ]
 
 export const TYPING_FONTS = TYPING_FONT_NAMES.map(font => ({ label: font, value: font }))

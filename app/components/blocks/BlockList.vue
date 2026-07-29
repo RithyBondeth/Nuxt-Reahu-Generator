@@ -5,9 +5,9 @@ const { blocks } = useReadme()
 </script>
 
 <template>
-  <section class="space-y-3">
-    <div class="flex items-center justify-between gap-2 px-1">
-      <h2 class="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-dimmed">
+  <section class="space-y-4">
+    <div class="flex items-center justify-between gap-2">
+      <h2 class="flex items-center gap-2 text-sm font-semibold">
         Document
         <UBadge
           :label="String(blocks.length)"
@@ -29,7 +29,7 @@ const { blocks } = useReadme()
       handle=".drag-handle"
       :animation="180"
       ghost-class="is-dragging"
-      class="space-y-2"
+      class="space-y-1.5"
     >
       <BlockCard
         v-for="(block, index) in blocks"
@@ -42,7 +42,7 @@ const { blocks } = useReadme()
 
     <p
       v-if="!blocks.length"
-      class="rounded-lg border border-dashed border-default p-6 text-center text-sm text-dimmed"
+      class="border border-dashed border-default p-6 text-center text-sm text-dimmed"
     >
       No blocks yet — add one below.
     </p>

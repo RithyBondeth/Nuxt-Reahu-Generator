@@ -15,10 +15,11 @@
     <rect x="39" y="16" width="8" height="16" rx="4" fill="#C5F74F"/>
     <path d="M26 38h10l14 13H38L26 40z" fill="#C5F74F"/>
   </g>
-  <text x="100" y="340" fill="#F0F0F0" font-family="Noto Sans, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-4">Reahu Generator</text>
-  <text x="104" y="414" fill="#C5C5C5" font-family="Noto Sans, Arial, sans-serif" font-size="32">Build a GitHub profile README, block by block.</text>
+  <text x="100" y="340" fill="#F0F0F0" font-family="Ubuntu, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-4">Reahu Generator</text>
+  <rect x="102" y="351" width="478" height="12" fill="#C5F74F"/>
+  <text x="104" y="414" fill="#C5C5C5" font-family="Ubuntu, Arial, sans-serif" font-size="32">Build a GitHub profile README, block by block.</text>
   <g transform="translate(104 478)">
     <rect width="276" height="54" rx="27" fill="#C5F74F"/>
-    <text x="138" y="35" text-anchor="middle" fill="#111111" font-family="Noto Sans, Arial, sans-serif" font-size="20" font-weight="700">No account required</text>
+    <text x="138" y="35" text-anchor="middle" fill="#111111" font-family="Ubuntu, Arial, sans-serif" font-size="20" font-weight="700">No account required</text>
   </g>
 </svg>

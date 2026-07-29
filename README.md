@@ -132,7 +132,7 @@ Ramps are defined in `app/assets/css/main.css` and aliased in
 `app/app.config.ts`. Hairline borders and quiet grid lines provide structure;
 brand colour is reserved for active controls and primary actions.
 
-Type is Noto Sans throughout, with Noto Sans Mono reserved for code and section
+Type is Ubuntu throughout, with Ubuntu Mono reserved for code and section
 labels. Both are self-hosted at build time by `@nuxt/fonts`, which ships with
 Nuxt UI, so there is no CDN request at runtime.
 

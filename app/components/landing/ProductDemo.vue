@@ -12,48 +12,58 @@ const demoTools = ['TypeScript', 'Nuxt', 'Python', 'Postgres', 'Flutter']
 </script>
 
 <template>
-  <div class="product-frame enter-bloom d-6">
-    <div class="product-frame__bar">
-      <div
-        class="flex items-center gap-1.5"
-        aria-hidden="true"
-      >
-        <span class="size-2 rounded-full bg-default/20" />
-        <span class="size-2 rounded-full bg-default/20" />
-        <span class="size-2 rounded-full bg-default/20" />
+  <div class="workbench-preview enter-bloom d-6">
+    <div class="workbench-preview__bar">
+      <div class="flex items-center gap-2">
+        <span class="grid size-5 place-items-center bg-primary text-[10px] font-bold text-[#111111]">R</span>
+        <span class="text-xs font-medium">profile.readme</span>
       </div>
-      <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-dimmed">reahu / draft</span>
-      <span class="flex items-center gap-1.5 text-[11px] text-muted">
+      <span class="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.14em] text-muted">
         <span class="status-dot" />
-        Saved
+        Live preview
       </span>
     </div>
 
-    <div class="grid lg:grid-cols-[0.72fr_1.28fr]">
-      <div class="border-b border-default p-3 sm:p-5 lg:border-b-0 lg:border-r">
-        <div class="mb-3 flex items-center justify-between px-1">
-          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-dimmed">Document</span>
-          <span class="text-[11px] text-dimmed">6 blocks</span>
+    <div class="workbench-preview__body">
+      <aside
+        class="workbench-preview__rail"
+        aria-hidden="true"
+      >
+        <span class="workbench-preview__rail-key is-active"><UIcon
+          name="i-lucide-blocks"
+          class="size-4"
+        /></span>
+        <span class="workbench-preview__rail-key"><UIcon
+          name="i-lucide-search"
+          class="size-4"
+        /></span>
+        <span class="workbench-preview__rail-key"><UIcon
+          name="i-lucide-settings-2"
+          class="size-4"
+        /></span>
+      </aside>
+
+      <div class="workbench-preview__document">
+        <div class="mb-4 flex items-center justify-between">
+          <span class="text-xs font-semibold">Document</span>
+          <span class="font-mono text-[10px] text-dimmed">05 / 17</span>
         </div>
 
-        <div class="space-y-1.5">
+        <div class="space-y-1">
           <div
             v-for="(block, index) in demoBlocks"
             :key="block[0]"
             class="demo-block"
             :class="{ 'demo-block--active': index === 2 }"
           >
-            <UIcon
-              name="i-lucide-grip-vertical"
-              class="size-3.5 text-dimmed"
-            />
+            <span class="font-mono text-[9px] text-dimmed">0{{ index + 1 }}</span>
             <UIcon
               :name="block[1]"
               class="size-3.5 text-primary"
             />
             <span>{{ block[0] }}</span>
             <UIcon
-              name="i-lucide-chevron-right"
+              name="i-lucide-grip-vertical"
               class="ms-auto size-3.5 text-dimmed"
             />
           </div>
@@ -71,13 +81,13 @@ const demoTools = ['TypeScript', 'Nuxt', 'Python', 'Postgres', 'Flutter']
         </button>
       </div>
 
-      <div class="bg-[#0d1117] p-5 sm:p-8">
+      <div class="workbench-preview__canvas">
         <div class="mx-auto max-w-xl text-[#e6edf3]">
           <div class="text-center">
             <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-[#9198a1]">
               github.com/rithybondeth
             </p>
-            <h2 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h2 class="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
               Rithy Bondeth
             </h2>
             <p class="mt-2 text-xs text-[#9198a1] sm:text-sm">
@@ -101,7 +111,7 @@ const demoTools = ['TypeScript', 'Nuxt', 'Python', 'Postgres', 'Flutter']
             <span
               v-for="tool in demoTools"
               :key="tool"
-              class="rounded-md border border-[#30363d] bg-[#161b22] px-2 py-1 font-mono text-[10px] text-[#c9d1d9]"
+              class="border border-[#30363d] bg-[#161b22] px-2 py-1 font-mono text-[10px] text-[#c9d1d9]"
             >
               {{ tool }}
             </span>

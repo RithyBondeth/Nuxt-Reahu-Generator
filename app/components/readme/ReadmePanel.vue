@@ -10,8 +10,8 @@ const theme = ref<'light' | 'dark'>('dark')
 </script>
 
 <template>
-  <section class="lg:sticky lg:top-20">
-    <div class="overflow-hidden rounded-xl border border-default bg-default shadow-sm">
+  <section class="preview-panel lg:sticky lg:top-[4.5rem]">
+    <div class="preview-shell">
       <ReadmeToolbar
         v-model:mode="mode"
         v-model:theme="theme"
@@ -30,7 +30,7 @@ const theme = ref<'light' | 'dark'>('dark')
       </div>
     </div>
 
-    <p class="mt-3 px-1 text-xs leading-5 text-dimmed">
+    <p class="mt-4 text-xs leading-5 text-dimmed">
       Save as <code class="text-default">README.md</code> in a repo named exactly your GitHub username to make it your profile.
     </p>
   </section>

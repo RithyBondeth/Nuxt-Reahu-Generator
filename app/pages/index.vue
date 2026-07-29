@@ -8,60 +8,83 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
 </script>
 
 <template>
-  <div>
-    <section class="hero-grid overflow-hidden border-b border-default">
-      <UContainer class="max-w-[90rem] py-20 sm:py-24 lg:py-24">
-        <div class="mx-auto max-w-5xl text-center">
-          <p class="enter d-1 mx-auto inline-flex items-center gap-2 rounded-full border border-default bg-elevated px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-            <span
-              class="status-dot"
+  <div class="landing-page">
+    <section class="landing-hero">
+      <UContainer class="max-w-[96rem] py-14 sm:py-20 lg:py-24">
+        <div class="grid items-center gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div class="relative z-10 max-w-2xl">
+            <p class="eyebrow enter d-1 flex items-center gap-2 text-muted">
+              <span
+                class="status-dot"
+                aria-hidden="true"
+              />
+              {{ LANDING_HERO.pill }}
+            </p>
+
+            <h1 class="display mt-7 text-5xl sm:text-7xl lg:text-[5.4rem]">
+              <span class="enter d-2 block">{{ LANDING_HERO.title }}</span>
+              <span class="enter d-3 text-gradient block">{{ LANDING_HERO.titleAccent }}</span>
+            </h1>
+
+            <p class="enter d-4 mt-7 max-w-xl text-base leading-7 text-muted sm:text-lg">
+              {{ LANDING_HERO.description }}
+            </p>
+
+            <div class="enter d-5 mt-9 flex flex-wrap items-center gap-3">
+              <UButton
+                to="/build"
+                label="Start composing"
+                trailing-icon="i-lucide-arrow-right"
+                size="xl"
+                class="!rounded-sm"
+              />
+              <UButton
+                to="https://github.com/RithyBondeth/Nuxt-Reahu-Generator"
+                target="_blank"
+                label="View on GitHub"
+                icon="i-simple-icons-github"
+                size="xl"
+                color="neutral"
+                variant="ghost"
+                class="!rounded-sm"
+              />
+            </div>
+
+            <dl class="hero-facts enter d-6 mt-12">
+              <div>
+                <dt>Blocks</dt>
+                <dd>{{ BLOCK_ORDER.length }}</dd>
+              </div>
+              <div>
+                <dt>Accounts</dt>
+                <dd>None</dd>
+              </div>
+              <div>
+                <dt>Output</dt>
+                <dd>README.md</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="relative">
+            <div
+              class="hero-accent"
               aria-hidden="true"
             />
-            {{ LANDING_HERO.pill }}
-          </p>
-
-          <h1 class="display mx-auto mt-7 max-w-5xl text-5xl sm:text-7xl lg:text-[5.75rem]">
-            <span class="enter d-2 block">{{ LANDING_HERO.title }}</span>
-            <span class="enter d-3 text-gradient block">{{ LANDING_HERO.titleAccent }}</span>
-          </h1>
-
-          <p class="enter d-4 mx-auto mt-7 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-            {{ LANDING_HERO.description }}
-          </p>
-
-          <div class="enter d-5 mt-9 flex flex-wrap items-center justify-center gap-3">
-            <UButton
-              to="/build"
-              label="Open the builder"
-              trailing-icon="i-lucide-arrow-up-right"
-              size="xl"
-            />
-            <UButton
-              to="https://github.com/RithyBondeth/Nuxt-Reahu-Generator"
-              target="_blank"
-              label="View source"
-              icon="i-simple-icons-github"
-              size="xl"
-              color="neutral"
-              variant="outline"
-            />
+            <ProductDemo />
           </div>
-        </div>
-
-        <div class="mx-auto mt-14 max-w-6xl">
-          <ProductDemo />
         </div>
       </UContainer>
     </section>
 
-    <section class="border-b border-default py-10">
-      <UContainer class="max-w-[90rem]">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
-          <div class="min-w-64">
-            <p class="eyebrow text-secondary">
+    <section class="stack-band">
+      <UContainer class="max-w-[96rem]">
+        <div class="grid gap-5 py-7 lg:grid-cols-[18rem_1fr] lg:items-center">
+          <div>
+            <p class="eyebrow text-muted">
               {{ LANDING_MARQUEE.eyebrow }}
             </p>
-            <h2 class="mt-2 text-lg font-medium">
+            <h2 class="mt-1 text-sm font-medium">
               {{ LANDING_MARQUEE.title }}
             </h2>
           </div>
@@ -72,57 +95,62 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
 
     <section
       id="blocks"
-      class="scroll-mt-20 border-b border-default py-20 sm:py-28"
+      class="library-section scroll-mt-20 py-20 sm:py-28"
     >
-      <UContainer class="max-w-[90rem]">
-        <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-          <div
-            v-reveal
-            class="reveal lg:sticky lg:top-28 lg:self-start"
-          >
-            <p class="eyebrow text-secondary">
+      <UContainer class="max-w-[96rem]">
+        <div
+          v-reveal
+          class="reveal mb-12 flex flex-col gap-6 border-b border-default pb-10 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div>
+            <p class="eyebrow text-muted">
               {{ LANDING_BLOCKS.eyebrow }}
             </p>
-            <h2 class="display mt-4 text-4xl sm:text-5xl">
+            <h2 class="display mt-4 max-w-3xl text-4xl sm:text-6xl">
               {{ blocksTitle }}
             </h2>
-            <p class="mt-5 max-w-md leading-7 text-muted">
+          </div>
+          <div class="max-w-md lg:text-right">
+            <p class="leading-7 text-muted">
               {{ LANDING_BLOCKS.description }}
             </p>
             <UButton
               to="/build"
-              label="Explore every block"
+              label="Open the full library"
               trailing-icon="i-lucide-arrow-right"
               color="neutral"
               variant="link"
-              class="mt-5 px-0"
+              class="mt-3 px-0"
             />
           </div>
-          <BlockVocabulary />
         </div>
+        <BlockVocabulary />
       </UContainer>
     </section>
 
-    <section class="border-b border-default">
-      <UContainer class="max-w-[90rem]">
-        <div class="grid md:grid-cols-3">
+    <section class="principles-section">
+      <UContainer class="max-w-[96rem] py-20 sm:py-24">
+        <p class="eyebrow text-muted">
+          Made to stay out of your way
+        </p>
+        <div class="mt-10 grid border-y border-default md:grid-cols-3">
           <article
             v-for="(claim, index) in LANDING_CLAIMS"
             :key="claim.title"
             v-reveal="index * 70"
-            class="reveal border-default py-10 md:border-r md:px-8 md:py-14 first:md:pl-0 last:md:border-r-0 last:md:pr-0"
+            class="principle-card reveal"
           >
             <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-dimmed">0{{ index + 1 }}</span>
               <UIcon
                 :name="claim.icon"
                 class="size-5 text-primary"
               />
-              <span class="font-mono text-xs text-dimmed">0{{ index + 1 }}</span>
             </div>
-            <h3 class="mt-8 text-lg font-semibold">
+            <h3 class="mt-16 text-xl font-semibold">
               {{ claim.title }}
             </h3>
-            <p class="mt-2 max-w-sm text-sm leading-6 text-muted">
+            <p class="mt-3 max-w-sm text-sm leading-6 text-muted">
               {{ claim.description }}
             </p>
           </article>
@@ -130,24 +158,27 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
       </UContainer>
     </section>
 
-    <section class="hero-grid py-24 sm:py-32">
-      <UContainer class="max-w-[90rem] text-center">
-        <p class="eyebrow text-secondary">
-          Ready when you are
-        </p>
-        <h2 class="display mx-auto mt-5 max-w-3xl text-4xl sm:text-6xl">
-          Make the first impression yours.
-        </h2>
-        <p class="mx-auto mt-5 max-w-xl leading-7 text-muted">
-          Begin with a useful profile, refine it block by block, and leave with plain Markdown.
-        </p>
-        <UButton
-          to="/build"
-          label="Start building"
-          trailing-icon="i-lucide-arrow-up-right"
-          size="xl"
-          class="mt-8"
-        />
+    <section class="final-cta">
+      <UContainer class="max-w-[96rem] py-16 sm:py-24">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p class="eyebrow text-[#111111]/60">
+              Your profile, your voice
+            </p>
+            <h2 class="display mt-5 max-w-4xl text-4xl text-[#111111] sm:text-6xl">
+              Make a README people remember.
+            </h2>
+          </div>
+          <UButton
+            to="/build"
+            label="Build your profile"
+            trailing-icon="i-lucide-arrow-right"
+            size="xl"
+            color="neutral"
+            variant="solid"
+            class="!rounded-sm"
+          />
+        </div>
       </UContainer>
     </section>
   </div>

@@ -28,14 +28,14 @@ async function copyShareLink() {
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-2 border-b border-default bg-elevated/60 px-3 py-2.5">
-    <div class="flex rounded-lg border border-default bg-default p-0.5">
+  <div class="preview-toolbar">
+    <div class="flex border border-default bg-default p-0.5">
       <button
         v-for="option in MODES"
         :key="option"
         type="button"
-        class="rounded-md px-2.5 py-1 text-xs font-medium capitalize transition"
-        :class="mode === option ? 'bg-elevated text-default shadow-sm' : 'text-dimmed hover:text-default'"
+        class="px-3 py-1 text-xs font-medium capitalize transition"
+        :class="mode === option ? 'bg-elevated text-default' : 'text-dimmed hover:text-default'"
         @click="mode = option"
       >
         {{ option }}

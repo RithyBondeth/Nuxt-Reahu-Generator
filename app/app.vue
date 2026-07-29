@@ -38,16 +38,16 @@ useSeoMeta({
 <template>
   <UApp>
     <header class="site-header sticky top-0 z-50">
-      <UContainer class="flex h-16 max-w-[90rem] items-center gap-4">
+      <UContainer class="flex h-14 max-w-[96rem] items-center gap-5">
         <NuxtLink
           to="/"
-          class="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          class="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           <BrandMark />
         </NuxtLink>
 
         <nav
-          class="site-nav absolute left-1/2 hidden -translate-x-1/2 items-center p-1 md:flex"
+          class="site-nav hidden items-stretch self-stretch md:flex"
           aria-label="Primary navigation"
         >
           <NuxtLink
@@ -86,10 +86,10 @@ useSeoMeta({
           />
           <UButton
             to="/build"
-            label="Build yours"
-            trailing-icon="i-lucide-arrow-up-right"
+            label="Open builder"
+            trailing-icon="i-lucide-arrow-right"
             size="sm"
-            class="ms-1"
+            class="ms-1 !rounded-sm"
           />
         </div>
       </UContainer>
@@ -99,12 +99,20 @@ useSeoMeta({
       <NuxtPage />
     </UMain>
 
-    <footer class="border-t border-default">
-      <UContainer class="flex max-w-[90rem] flex-col gap-4 py-8 text-sm text-muted sm:flex-row sm:items-center">
-        <BrandMark :wordmark="false" />
-        <p>Markdown in. Markdown out. Nothing leaves your browser.</p>
-        <div class="sm:ms-auto">
-          © {{ new Date().getFullYear() }} Reahu
+    <footer class="site-footer">
+      <UContainer class="max-w-[96rem] py-8">
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <BrandMark />
+            <p class="mt-3 max-w-sm text-sm leading-6 text-muted">
+              A focused workspace for turning your work into a GitHub profile.
+            </p>
+          </div>
+          <div class="flex items-center gap-5 text-xs text-dimmed">
+            <span>Local-first</span>
+            <span>Plain Markdown</span>
+            <span>© {{ new Date().getFullYear() }}</span>
+          </div>
         </div>
       </UContainer>
     </footer>
