@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { LANDING_BLOCKS, LANDING_CLAIMS, LANDING_HERO, LANDING_MARQUEE } from '~/config/landing'
+import {
+  LANDING_BLOCKS,
+  LANDING_CLAIMS,
+  LANDING_HERO,
+  LANDING_MAKER,
+  LANDING_MARQUEE
+} from '~/config/landing'
 import { BLOCK_ORDER } from '~/core/blocks'
 
 useHead({ title: '' })
@@ -154,6 +160,99 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
               {{ claim.description }}
             </p>
           </article>
+        </div>
+      </UContainer>
+    </section>
+
+    <section
+      id="maker"
+      class="maker-section"
+    >
+      <UContainer class="max-w-[96rem] py-20 sm:py-24">
+        <div
+          v-reveal
+          class="maker-grid reveal"
+        >
+          <div class="maker-intro">
+            <div class="flex items-center justify-between">
+              <p class="eyebrow text-muted">
+                Independent project
+              </p>
+              <span class="font-mono text-xs text-dimmed">04 / 04</span>
+            </div>
+
+            <div class="maker-signature">
+              <span aria-hidden="true">RB</span>
+              <div>
+                <p class="text-sm text-muted">
+                  Designed and developed by
+                </p>
+                <h2 class="display mt-2 text-4xl sm:text-6xl">
+                  {{ LANDING_MAKER.name }}
+                </h2>
+              </div>
+            </div>
+
+            <p class="mt-8 max-w-2xl text-base leading-7 text-muted">
+              {{ LANDING_MAKER.description }}
+            </p>
+
+            <div class="maker-meta mt-8">
+              <span>{{ LANDING_MAKER.role }}</span>
+              <span>{{ LANDING_MAKER.location }}</span>
+              <span>Building in public</span>
+            </div>
+          </div>
+
+          <aside class="maker-support">
+            <div>
+              <UIcon
+                name="i-lucide-coffee"
+                class="size-6 text-primary"
+              />
+              <p class="eyebrow mt-7 text-muted">
+                Keep Reahu growing
+              </p>
+              <h3 class="mt-3 text-2xl font-semibold">
+                Saved you some time?
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-muted">
+                Reahu is free and local-first. A coffee helps fund new blocks, templates, and careful improvements.
+              </p>
+            </div>
+
+            <div class="mt-8 grid gap-2">
+              <UButton
+                :to="LANDING_MAKER.coffeeUrl"
+                target="_blank"
+                label="Buy me a coffee"
+                icon="i-simple-icons-buymeacoffee"
+                trailing-icon="i-lucide-arrow-up-right"
+                size="lg"
+                class="justify-center !rounded-sm"
+              />
+              <div class="grid grid-cols-2 gap-2">
+                <UButton
+                  :to="LANDING_MAKER.portfolioUrl"
+                  target="_blank"
+                  label="Portfolio"
+                  icon="i-lucide-globe-2"
+                  color="neutral"
+                  variant="outline"
+                  class="justify-center !rounded-sm"
+                />
+                <UButton
+                  :to="LANDING_MAKER.githubUrl"
+                  target="_blank"
+                  label="GitHub"
+                  icon="i-simple-icons-github"
+                  color="neutral"
+                  variant="outline"
+                  class="justify-center !rounded-sm"
+                />
+              </div>
+            </div>
+          </aside>
         </div>
       </UContainer>
     </section>

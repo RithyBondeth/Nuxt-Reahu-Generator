@@ -654,6 +654,86 @@ body {
   border-top: 1px solid var(--ui-border);
 }
 
+.maker-section {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+}
+
+.maker-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: color-mix(in oklab, var(--ui-border) 45%, transparent);
+  pointer-events: none;
+}
+
+.maker-grid {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+}
+
+.maker-intro {
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.maker-signature {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+
+.maker-signature > span {
+  display: grid;
+  width: 4.25rem;
+  height: 4.25rem;
+  flex: none;
+  place-items: center;
+  background: var(--color-lime-500);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+  box-shadow: 8px 8px 0 color-mix(in oklab, var(--ui-border) 55%, transparent);
+}
+
+.maker-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--ui-border);
+  border-left: 1px solid var(--ui-border);
+}
+
+.maker-meta span {
+  flex: 1 1 10rem;
+  border-right: 1px solid var(--ui-border);
+  border-bottom: 1px solid var(--ui-border);
+  padding: 0.7rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ui-text-dimmed);
+}
+
+.maker-support {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid var(--ui-border);
+  padding: 1.5rem;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--color-lime-500) 6%, transparent), transparent 56%),
+    color-mix(in oklab, var(--ui-bg-elevated) 52%, var(--ui-bg));
+}
+
 .final-cta {
   background: var(--color-lime-500);
 }
@@ -1540,6 +1620,20 @@ body {
 
   .builder-canvas {
     padding: 1.25rem;
+  }
+
+  .maker-grid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(19rem, 0.75fr);
+  }
+
+  .maker-intro {
+    padding: 2rem;
+  }
+
+  .maker-support {
+    border-top: 0;
+    border-left: 1px solid var(--ui-border);
+    padding: 2rem;
   }
 }
 

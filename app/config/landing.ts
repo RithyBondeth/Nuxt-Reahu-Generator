@@ -23,6 +23,16 @@ export const LANDING_MARQUEE = {
   title: 'The tools you use are already here'
 }
 
+export const LANDING_MAKER = {
+  name: 'Rithy Bondeth',
+  role: 'Full-stack developer & AI engineer',
+  location: 'Phnom Penh, Cambodia',
+  description: 'I built Reahu to make a polished developer profile feel less like formatting work and more like telling your story.',
+  portfolioUrl: 'https://bondeth.dev',
+  githubUrl: 'https://github.com/RithyBondeth',
+  coffeeUrl: 'https://buymeacoffee.com/bondth'
+}
+
 /**
  * Three claims, each one a thing the tool actually does differently — not a
  * feature grid. Anything that could be said about any builder was cut.
