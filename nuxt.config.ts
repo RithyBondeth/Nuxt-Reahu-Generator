@@ -6,6 +6,13 @@ export default defineNuxtConfig({
     '@vueuse/nuxt'
   ],
 
+  // Components are grouped into feature folders (`blocks/`, `readme/`) for
+  // navigability, but keep flat names — `<BlockCard>`, not `<BlocksBlockCard>`.
+  // Names must therefore stay unique across those folders.
+  components: [
+    { path: '~/components', pathPrefix: false }
+  ],
+
   devtools: {
     enabled: true
   },
