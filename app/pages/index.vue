@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LANDING_BLOCKS, LANDING_CLAIMS, LANDING_HERO } from '~/config/landing'
+import { LANDING_BLOCKS, LANDING_CLAIMS, LANDING_HERO, LANDING_MARQUEE } from '~/config/landing'
 
 // The shell's titleTemplate appends the brand, so the home page keeps its own
 // title untouched rather than repeating it.
@@ -9,35 +9,36 @@ useHead({ title: '' })
 <template>
   <div>
     <!--
-      The artifact leads, the headline follows. Visitors see a real rendered
-      README before they are told what the tool is — the header already names
-      the product, so the headline can make a claim instead of an explanation.
+      One orchestrated arrival rather than scattered effects: the words land
+      first, then the eclipse blooms behind them and the brackets close in.
+      Every step is a delay class, so nothing here depends on script.
     -->
-    <section class="px-4 pb-16 pt-16 sm:pt-24">
-      <p class="eyebrow mb-10 text-center text-primary">
-        {{ LANDING_HERO.eyebrow }}
-      </p>
+    <section class="night relative overflow-hidden px-4 pb-24 pt-16 sm:pt-24">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="enter d-1 inline-flex items-center gap-2 rounded-full border border-default bg-elevated/50 px-3.5 py-1.5 text-xs text-muted backdrop-blur-sm">
+          <span
+            class="size-1.5 rounded-full bg-primary"
+            aria-hidden="true"
+          />
+          {{ LANDING_HERO.pill }}
+        </p>
 
-      <HeroEclipse />
-
-      <div class="mx-auto mt-14 max-w-2xl text-center">
-        <!-- Two deliberate lines rather than a wrapped paragraph: the second
-             sentence is the turn, and it should land on its own. -->
-        <h1 class="display text-5xl sm:text-6xl">
-          <span class="block">{{ LANDING_HERO.title }}</span>
-          <span class="block text-muted">{{ LANDING_HERO.titleAccent }}</span>
+        <h1 class="display mt-7 text-5xl sm:text-7xl">
+          <span class="enter d-2 block">{{ LANDING_HERO.title }}</span>
+          <span class="enter d-3 text-gradient block">{{ LANDING_HERO.titleAccent }}</span>
         </h1>
 
-        <p class="mx-auto mt-6 max-w-lg text-base text-muted sm:text-lg">
+        <p class="enter d-4 mx-auto mt-7 max-w-xl text-base text-muted sm:text-lg">
           {{ LANDING_HERO.description }}
         </p>
 
-        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div class="enter d-5 mt-9 flex flex-wrap items-center justify-center gap-3">
           <UButton
             to="/build"
             label="Start building"
             trailing-icon="i-lucide-arrow-right"
             size="xl"
+            class="glow"
           />
           <UButton
             to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"
@@ -50,35 +51,57 @@ useHead({ title: '' })
           />
         </div>
       </div>
+
+      <div class="mx-auto mt-20 max-w-4xl">
+        <HeroEclipse />
+      </div>
     </section>
 
-    <UContainer class="pb-20">
-      <section>
-        <p class="eyebrow text-secondary">
-          {{ LANDING_BLOCKS.eyebrow }}
-        </p>
-        <h2 class="display mt-3 text-3xl sm:text-4xl">
-          {{ LANDING_BLOCKS.title }}
-        </h2>
-        <p class="mt-3 max-w-xl text-muted">
-          {{ LANDING_BLOCKS.description }}
-        </p>
+    <UContainer class="pb-24">
+      <section class="mt-4">
+        <div class="text-center">
+          <p class="eyebrow text-secondary">
+            {{ LANDING_MARQUEE.eyebrow }}
+          </p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">
+            {{ LANDING_MARQUEE.title }}
+          </h2>
+        </div>
 
-        <BlockVocabulary class="mt-8" />
+        <TechMarquee class="mt-8" />
       </section>
 
-      <!-- A supporting band rather than a third pitch: the rule grounds it to
-           the block grid above instead of leaving it floating. -->
-      <section class="mt-20 grid gap-8 border-t border-default pt-12 sm:grid-cols-3">
+      <section class="mt-24">
         <div
-          v-for="claim in LANDING_CLAIMS"
+          v-reveal
+          class="reveal"
+        >
+          <p class="eyebrow text-secondary">
+            {{ LANDING_BLOCKS.eyebrow }}
+          </p>
+          <h2 class="display mt-3 text-3xl sm:text-4xl">
+            {{ LANDING_BLOCKS.title }}
+          </h2>
+          <p class="mt-3 max-w-xl text-muted">
+            {{ LANDING_BLOCKS.description }}
+          </p>
+        </div>
+
+        <BlockVocabulary class="mt-9" />
+      </section>
+
+      <section class="mt-24 grid gap-4 sm:grid-cols-3">
+        <div
+          v-for="(claim, index) in LANDING_CLAIMS"
           :key="claim.title"
+          v-reveal="index * 90"
+          class="reveal rounded-2xl border border-default bg-elevated/30 p-6"
         >
           <UIcon
             :name="claim.icon"
             class="size-5 text-primary"
           />
-          <h3 class="mt-3 font-semibold">
+          <h3 class="mt-3.5 font-semibold">
             {{ claim.title }}
           </h3>
           <p class="mt-2 text-sm text-muted">
@@ -87,20 +110,33 @@ useHead({ title: '' })
         </div>
       </section>
 
-      <section class="corona mt-20 overflow-hidden rounded-3xl bg-slate-950 px-6 py-14 text-center">
-        <h2 class="display text-3xl text-white sm:text-4xl">
-          Two minutes, start to commit
-        </h2>
-        <p class="mx-auto mt-3 max-w-md text-slate-300">
-          Open the builder on a sensible default document and edit it down.
-        </p>
-        <UButton
-          to="/build"
-          label="Start building"
-          trailing-icon="i-lucide-arrow-right"
-          size="xl"
-          class="mt-8"
-        />
+      <!-- The motif returns once at the close, at rest this time. -->
+      <section
+        v-reveal
+        class="reveal corona night relative mt-24 overflow-hidden rounded-3xl bg-slate-950 px-6 py-16 text-center"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <div class="corona-halo aspect-square w-[70%] max-w-2xl rounded-full opacity-60" />
+        </div>
+
+        <div class="relative">
+          <h2 class="display text-3xl text-white sm:text-5xl">
+            Two minutes, start to commit
+          </h2>
+          <p class="mx-auto mt-4 max-w-md text-slate-300">
+            Open the builder on a sensible default document and edit it down.
+          </p>
+          <UButton
+            to="/build"
+            label="Start building"
+            trailing-icon="i-lucide-arrow-right"
+            size="xl"
+            class="glow mt-9"
+          />
+        </div>
       </section>
     </UContainer>
   </div>

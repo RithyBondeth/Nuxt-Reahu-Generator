@@ -19,6 +19,13 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // The interface is designed against the eclipse navy first; light mode still
+  // works and the toggle stays, but dark is the intended presentation.
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark'
+  },
+
   routeRules: {
     // Landing page is static — good for SEO and free to serve.
     '/': { prerender: true },

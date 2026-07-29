@@ -1,16 +1,21 @@
 /** Copy for the marketing page, kept out of the template markup. */
 
 export const LANDING_HERO = {
-  eyebrow: 'github profile readme',
+  pill: 'No account. No server. No upload.',
   title: 'Compose it.',
   titleAccent: 'Don\'t copy it.',
-  description: 'Stack blocks, watch them render, commit the Markdown. No account and no server — the whole thing runs in your browser.'
+  description: 'Stack blocks, watch them render, commit the Markdown. Your GitHub profile README, built in about two minutes.'
 }
 
 export const LANDING_BLOCKS = {
   eyebrow: 'the vocabulary',
   title: 'Six blocks, any order',
   description: 'Drag to rearrange, duplicate what you need, delete what you don\'t. The document is the list.'
+}
+
+export const LANDING_MARQUEE = {
+  eyebrow: 'tech stack',
+  title: 'Every icon, one click away'
 }
 
 /**

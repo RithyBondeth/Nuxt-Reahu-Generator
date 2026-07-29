@@ -18,9 +18,11 @@ withDefaults(defineProps<{
       width="36"
       height="36"
     >
+    <!-- Below `sm` the header is tight enough that the wordmark wraps to two
+         lines, so the mark carries the brand on its own there. -->
     <span
       v-if="wordmark"
-      class="display text-default"
+      class="display hidden whitespace-nowrap text-default sm:inline"
       :class="size === 'md' ? 'text-xl' : 'text-base'"
     >Reahu <span class="text-muted">Generator</span></span>
   </span>
