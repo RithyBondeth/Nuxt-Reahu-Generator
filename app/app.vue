@@ -1,41 +1,50 @@
 <script setup lang="ts">
+const title = 'Reahu Generator'
+const description = 'Compose a GitHub profile README from drag-and-drop blocks. Live preview, shareable links, download the Markdown. No account, no server.'
+
 useHead({
+  titleTemplate: chunk => (chunk ? `${chunk} · ${title}` : title),
   meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    // Tints mobile browser chrome with the eclipse navy from the logo.
+    { name: 'theme-color', content: '#001038' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+    { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
   ],
   htmlAttrs: {
     lang: 'en'
   }
 })
 
-const title = 'Profile README Builder'
-const description = 'Build a GitHub profile README from drag-and-drop blocks. Live preview, shareable links, download as Markdown. No account needed.'
-
 useSeoMeta({
   title,
   description,
+  ogType: 'website',
+  ogSiteName: title,
   ogTitle: title,
   ogDescription: description,
-  twitterCard: 'summary_large_image'
+  ogImage: '/og-image.jpg',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: 'Reahu Generator',
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: '/og-image.jpg'
 })
 </script>
 
 <template>
   <UApp>
-    <UHeader>
+    <UHeader :ui="{ root: 'border-default/60' }">
       <template #left>
         <NuxtLink
           to="/"
-          class="flex items-center gap-2 font-semibold"
+          class="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
-          <UIcon
-            name="i-lucide-square-code"
-            class="size-5 shrink-0 text-primary"
-          />
-          <span>README Builder</span>
+          <BrandMark />
         </NuxtLink>
       </template>
 
@@ -55,11 +64,22 @@ useSeoMeta({
       <NuxtPage />
     </UMain>
 
-    <UFooter>
+    <UFooter :ui="{ root: 'border-t border-default/60' }">
       <template #left>
         <p class="text-sm text-muted">
-          Runs entirely in your browser • © {{ new Date().getFullYear() }}
+          Runs entirely in your browser · © {{ new Date().getFullYear() }}
         </p>
+      </template>
+
+      <template #right>
+        <UButton
+          to="https://github.com/RithyBondeth/Nuxt-Reahu-Generator"
+          target="_blank"
+          icon="i-simple-icons-github"
+          aria-label="Source on GitHub"
+          color="neutral"
+          variant="ghost"
+        />
       </template>
     </UFooter>
   </UApp>

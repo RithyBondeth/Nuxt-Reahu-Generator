@@ -1,5 +1,5 @@
 {
-  "name": "github-readme-builder",
+  "name": "reahu-generator",
   "private": true,
   "type": "module",
   "scripts": {
@@ -29,5 +29,6 @@
     "eslint": "^10.8.0",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.8"
-  }
+  },
+  "description": "Compose a GitHub profile README from drag-and-drop blocks. Runs entirely in the browser."
 }
