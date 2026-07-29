@@ -207,50 +207,40 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
           <aside class="maker-support">
             <div>
               <UIcon
-                name="i-lucide-coffee"
+                name="i-lucide-git-fork"
                 class="size-6 text-primary"
               />
               <p class="eyebrow mt-7 text-muted">
-                Keep Reahu growing
+                Open-source support
               </p>
               <h3 class="mt-3 text-2xl font-semibold">
-                Saved you some time?
+                Help Reahu reach more developers.
               </h3>
               <p class="mt-3 text-sm leading-6 text-muted">
-                Reahu is free and local-first. A coffee helps fund new blocks, templates, and careful improvements.
+                Follow my work and star the repository. Two small GitHub actions that help this independent project grow.
               </p>
             </div>
 
             <div class="mt-8 grid gap-2">
               <UButton
-                :to="LANDING_MAKER.coffeeUrl"
+                :to="LANDING_MAKER.repositoryUrl"
                 target="_blank"
-                label="Buy me a coffee"
-                icon="i-simple-icons-buymeacoffee"
+                label="Star Reahu on GitHub"
+                icon="i-lucide-star"
                 trailing-icon="i-lucide-arrow-up-right"
                 size="lg"
                 class="justify-center !rounded-sm"
               />
-              <div class="grid grid-cols-2 gap-2">
-                <UButton
-                  :to="LANDING_MAKER.portfolioUrl"
-                  target="_blank"
-                  label="Portfolio"
-                  icon="i-lucide-globe-2"
-                  color="neutral"
-                  variant="outline"
-                  class="justify-center !rounded-sm"
-                />
-                <UButton
-                  :to="LANDING_MAKER.githubUrl"
-                  target="_blank"
-                  label="GitHub"
-                  icon="i-simple-icons-github"
-                  color="neutral"
-                  variant="outline"
-                  class="justify-center !rounded-sm"
-                />
-              </div>
+              <UButton
+                :to="LANDING_MAKER.githubUrl"
+                target="_blank"
+                label="Follow Rithy on GitHub"
+                icon="i-lucide-user-plus"
+                trailing-icon="i-lucide-arrow-up-right"
+                color="neutral"
+                variant="outline"
+                class="justify-center !rounded-sm"
+              />
             </div>
           </aside>
         </div>

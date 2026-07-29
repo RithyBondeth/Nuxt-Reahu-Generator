@@ -28,9 +28,8 @@ export const LANDING_MAKER = {
   role: 'Full-stack developer & AI engineer',
   location: 'Phnom Penh, Cambodia',
   description: 'I built Reahu to make a polished developer profile feel less like formatting work and more like telling your story.',
-  portfolioUrl: 'https://bondeth.dev',
   githubUrl: 'https://github.com/RithyBondeth',
-  coffeeUrl: 'https://buymeacoffee.com/bondth'
+  repositoryUrl: 'https://github.com/RithyBondeth/Nuxt-Reahu-Generator'
 }
 
 /**
