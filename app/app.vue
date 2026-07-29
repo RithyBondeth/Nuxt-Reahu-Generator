@@ -6,10 +6,10 @@ useHead({
   titleTemplate: chunk => (chunk ? `${chunk} · ${title}` : title),
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'theme-color', content: '#0A0A0B' }
+    { name: 'theme-color', content: '#111111' }
   ],
   link: [
-    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/reahu-mark.svg' },
     { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
   ],
   htmlAttrs: {
@@ -24,14 +24,14 @@ useSeoMeta({
   ogSiteName: title,
   ogTitle: title,
   ogDescription: description,
-  ogImage: '/og-image.jpg',
+  ogImage: '/og-image.png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
   ogImageAlt: 'Reahu Generator',
   twitterCard: 'summary_large_image',
   twitterTitle: title,
   twitterDescription: description,
-  twitterImage: '/og-image.jpg'
+  twitterImage: '/og-image.png'
 })
 </script>
 

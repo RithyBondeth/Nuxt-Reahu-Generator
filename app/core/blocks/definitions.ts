@@ -41,7 +41,7 @@ export const BLOCK_DEFINITIONS: { [K in BlockType]: BlockDefinition<K> } = {
       showFollowers: false,
       showStars: false,
       badgeStyle: 'for-the-badge',
-      badgeColor: '6C20FF'
+      badgeColor: 'C5F74F'
     })
   },
   banner: {
@@ -55,8 +55,8 @@ export const BLOCK_DEFINITIONS: { [K in BlockType]: BlockDefinition<K> } = {
       text: 'Your Name',
       subtext: '',
       colorMode: 'gradient',
-      colorFrom: '6C20FF',
-      colorTo: '009CFF',
+      colorFrom: 'C5F74F',
+      colorTo: '404040',
       height: 200,
       fontSize: 48,
       fontColor: 'FFFFFF',
@@ -78,7 +78,7 @@ export const BLOCK_DEFINITIONS: { [K in BlockType]: BlockDefinition<K> } = {
       font: 'Fira Code',
       size: 26,
       weight: 600,
-      color: '6C20FF',
+      color: 'A9D93B',
       duration: 3500,
       pause: 800,
       width: 500,
@@ -225,7 +225,7 @@ export const BLOCK_DEFINITIONS: { [K in BlockType]: BlockDefinition<K> } = {
       heading: '',
       items: [
         { label: 'Status', message: 'Open to work', color: '10B981', logo: '', href: '' },
-        { label: 'Focus', message: 'Building', color: '6C20FF', logo: 'rocket', href: '' }
+        { label: 'Focus', message: 'Building', color: 'A9D93B', logo: 'rocket', href: '' }
       ],
       style: 'for-the-badge',
       align: 'center'
@@ -302,8 +302,8 @@ export const BLOCK_DEFINITIONS: { [K in BlockType]: BlockDefinition<K> } = {
       style: 'gradient',
       height: 3,
       colorMode: 'gradient',
-      colorFrom: '6C20FF',
-      colorTo: '009CFF'
+      colorFrom: 'C5F74F',
+      colorTo: '404040'
     })
   },
   markdown: {

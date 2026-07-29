@@ -1,9 +1,9 @@
 export default defineAppConfig({
   ui: {
-    // Ramps are redefined in `assets/css/main.css` from the logo's own colours.
+    // Ramps are redefined in `assets/css/main.css` from the new brand system.
     colors: {
-      primary: 'violet',
-      secondary: 'sky',
+      primary: 'lime',
+      secondary: 'slate',
       neutral: 'slate'
     }
   }

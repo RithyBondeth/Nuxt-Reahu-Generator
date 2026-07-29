@@ -117,31 +117,35 @@ composition rather than markup.
 
 ## Brand
 
-The two accents are sampled from `public/reahu.png`; a restrained graphite ramp
-keeps the interface neutral enough for the violet and azure brackets to lead:
+Reahu uses a Drizzle-inspired colour system: one acid-lime accent over cool
+graphite surfaces. The custom mark is an abstract `R` assembled from modular
+blocks, connecting the identity to the product's block-based workflow:
 
-| Token | Value | From |
+| Token | Value | Role |
 | --- | --- | --- |
-| `violet-500` (primary) | `#6C20FF` | left bracket |
-| `sky-500` (secondary) | `#009CFF` | right bracket |
-| `slate-950` (surface) | `#0A0A0B` | graphite interface |
+| `lime-500` (primary) | `#C5F74F` | actions and active states |
+| `slate-950` (surface) | `#111111` | dark canvas |
+| `slate-800` (elevated) | `#282828` | raised surfaces |
+| `slate-400` (muted) | `#909090` | secondary text |
 
 Ramps are defined in `app/assets/css/main.css` and aliased in
 `app/app.config.ts`. Hairline borders and quiet grid lines provide structure;
 brand colour is reserved for active controls and primary actions.
 
-Type is Bricolage Grotesque for display, Public Sans for body, and JetBrains
-Mono for code and section labels — all self-hosted at build time by
-`@nuxt/fonts`, which ships with Nuxt UI, so there is no CDN request at runtime.
+Type is Noto Sans throughout, with Noto Sans Mono reserved for code and section
+labels. Both are self-hosted at build time by `@nuxt/fonts`, which ships with
+Nuxt UI, so there is no CDN request at runtime.
 
 The landing page uses a compact product demo as its main visual. It mirrors the
 real two-pane builder rather than introducing a separate decorative hero.
 
-Derived assets (`favicon.png`, `apple-touch-icon.png`, `og-image.jpg`) are
-generated from the logo. To regenerate after changing it:
+Derived assets (`favicon.png`, `apple-touch-icon.png`, `og-image.png`) are
+generated from the vector logo and social artwork.
 
 ```bash
-sips -Z 64 public/reahu.png --out public/favicon.png && sips -Z 180 public/reahu.png --out public/apple-touch-icon.png
+sips -s format png -z 64 64 public/reahu-mark.svg --out public/favicon.png
+sips -s format png -z 180 180 public/reahu-mark.svg --out public/apple-touch-icon.png
+sips -s format png public/og-image.svg --out public/og-image.png
 ```
 
 ## Things that will bite you

@@ -49,13 +49,13 @@ export const COLUMN_ALIGN_OPTIONS: { label: string, value: ColumnAlign, icon: st
  * because that is the form every badge and card service wants.
  */
 export const BRAND_SWATCHES: { label: string, value: string }[] = [
-  { label: 'Violet', value: '6C20FF' },
-  { label: 'Azure', value: '009CFF' },
-  { label: 'Navy', value: '001038' },
+  { label: 'Reahu lime', value: 'C5F74F' },
+  { label: 'Deep lime', value: '83AB2D' },
+  { label: 'Graphite', value: '1C1C1C' },
   { label: 'Emerald', value: '10B981' },
   { label: 'Amber', value: 'F59E0B' },
   { label: 'Rose', value: 'F43F5E' },
-  { label: 'Slate', value: '64748B' },
+  { label: 'Slate', value: '707070' },
   { label: 'Black', value: '000000' },
   { label: 'White', value: 'FFFFFF' }
 ]

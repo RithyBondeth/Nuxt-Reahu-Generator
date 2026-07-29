@@ -4,56 +4,43 @@
 /**
  * Reahu Generator — design tokens and motion system.
  *
- * Violet and azure come from the logo. A quiet graphite neutral ramp gives the
- * product a restrained editorial surface and lets those accents stay rare.
+ * Drizzle's acid-lime accent sits on a quiet graphite neutral ramp. The accent
+ * is deliberately rare: it signals selection, progress, and primary actions.
  *
- * `violet`, `sky`, and `slate` keep their Tailwind names — Nuxt UI resolves its
- * `primary`/`secondary`/`neutral` aliases against known colour names, so the
- * ramps are overridden in place rather than introducing new ones.
+ * `lime` and `slate` keep their Tailwind names because Nuxt UI resolves its
+ * colour aliases against known Tailwind ramps. The values below replace those
+ * ramps with the Reahu brand palette.
  */
 @theme static {
-  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Bricolage Grotesque', 'Public Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Noto Sans Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Left bracket — #6C20FF at 500. Lead accent. */
-  --color-violet-50: #F3EDFF;
-  --color-violet-100: #E7DBFF;
-  --color-violet-200: #D0B8FF;
-  --color-violet-300: #B490FF;
-  --color-violet-400: #9459FF;
-  --color-violet-500: #6C20FF;
-  --color-violet-600: #5A12E6;
-  --color-violet-700: #4A0DBD;
-  --color-violet-800: #3B0C96;
-  --color-violet-900: #2F0B75;
-  --color-violet-950: #1C0549;
+  /* Drizzle-inspired acid lime — #C5F74F is the anchor. */
+  --color-lime-50: #F7FFE5;
+  --color-lime-100: #EDFFC2;
+  --color-lime-200: #DFFF8A;
+  --color-lime-300: #D2FB64;
+  --color-lime-400: #C5F74F;
+  --color-lime-500: #C5F74F;
+  --color-lime-600: #A9D93B;
+  --color-lime-700: #83AB2D;
+  --color-lime-800: #647F27;
+  --color-lime-900: #526723;
+  --color-lime-950: #29380E;
 
-  /* Right bracket — #009CFF at 500. Secondary accent. */
-  --color-sky-50: #E8F6FF;
-  --color-sky-100: #D0EDFF;
-  --color-sky-200: #A3DBFF;
-  --color-sky-300: #6BC6FF;
-  --color-sky-400: #2EB0FF;
-  --color-sky-500: #009CFF;
-  --color-sky-600: #007ACC;
-  --color-sky-700: #005E9E;
-  --color-sky-800: #004B7D;
-  --color-sky-900: #003D66;
-  --color-sky-950: #002440;
-
-  /* Quiet graphite neutrals keep the interface editorial and let the mark lead. */
+  /* Cool graphite neutrals, sampled around Drizzle's light and dark surfaces. */
   --color-slate-50: #F7F7F8;
-  --color-slate-100: #EEEEF0;
-  --color-slate-200: #D9D9DD;
-  --color-slate-300: #B7B7BD;
-  --color-slate-400: #92929B;
-  --color-slate-500: #71717A;
-  --color-slate-600: #55555D;
-  --color-slate-700: #3C3C42;
-  --color-slate-800: #26262A;
-  --color-slate-900: #18181B;
-  --color-slate-950: #0A0A0B;
+  --color-slate-100: #F0F0F0;
+  --color-slate-200: #E1E3E6;
+  --color-slate-300: #C5C5C5;
+  --color-slate-400: #909090;
+  --color-slate-500: #707070;
+  --color-slate-600: #525252;
+  --color-slate-700: #404040;
+  --color-slate-800: #282828;
+  --color-slate-900: #1C1C1C;
+  --color-slate-950: #111111;
 
   /* One easing curve everywhere, so motion feels like a single hand. */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,6 +52,13 @@ html {
 
 body {
   background: var(--ui-bg);
+}
+
+/* Lime is intentionally luminous, so its readable foreground is graphite in
+   both colour modes. Nuxt UI otherwise flips `text-inverted` to white in light
+   mode, which does not have enough contrast against #C5F74F. */
+.bg-primary.text-inverted {
+  color: var(--color-slate-900);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -140,8 +134,8 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.035em;
+  font-weight: 650;
+  letter-spacing: -0.045em;
   line-height: 1.02;
 }
 
@@ -156,10 +150,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(104deg, var(--color-violet-400) 8%, var(--color-sky-400) 92%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-lime-500);
 }
 
 .site-header {
@@ -204,7 +195,7 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 22%, rgb(108 32 255 / 0.1), transparent 38%),
+    radial-gradient(circle at 50% 22%, rgb(197 247 79 / 0.1), transparent 38%),
     linear-gradient(var(--ui-bg), transparent 20%, transparent 78%, var(--ui-bg));
 }
 
@@ -218,8 +209,8 @@ body {
   height: 0.375rem;
   flex: none;
   border-radius: 999px;
-  background: var(--color-violet-400);
-  box-shadow: 0 0 0 3px rgb(108 32 255 / 0.12);
+  background: var(--color-lime-500);
+  box-shadow: 0 0 0 3px rgb(197 247 79 / 0.13);
 }
 
 .product-frame {
@@ -258,8 +249,8 @@ body {
 }
 
 .demo-block--active {
-  border-color: rgb(108 32 255 / 0.42);
-  background: rgb(108 32 255 / 0.08);
+  border-color: rgb(197 247 79 / 0.42);
+  background: rgb(197 247 79 / 0.08);
   color: var(--ui-text);
 }
 
@@ -309,7 +300,7 @@ body {
    ═══════════════════════════════════════════════════════════════ */
 
 /**
- * The block card. Its border warms toward the violet on hover so the row you
+ * The block card. Its border warms toward the lime on hover so the row you
  * are pointing at is obvious in a long stack, without the card moving — these
  * are drag targets, and a card that shifts under the cursor is harder to grab.
  */
@@ -324,12 +315,12 @@ body {
 }
 
 .block-card:hover {
-  border-color: color-mix(in oklab, var(--ui-border) 45%, var(--color-violet-500));
+  border-color: color-mix(in oklab, var(--ui-border) 45%, var(--color-lime-500));
 }
 
 .block-card:focus-within {
-  border-color: rgb(108 32 255 / 0.55);
-  box-shadow: 0 0 0 1px rgb(108 32 255 / 0.25);
+  border-color: rgb(197 247 79 / 0.55);
+  box-shadow: 0 0 0 1px rgb(197 247 79 / 0.25);
 }
 
 .block-card__icon {
@@ -341,7 +332,7 @@ body {
   border: 1px solid var(--ui-border);
   border-radius: 0.375rem;
   background: var(--ui-bg);
-  color: var(--color-violet-400);
+  color: var(--color-lime-600);
 }
 
 /* The card left behind while its original is being dragged. */
@@ -397,7 +388,7 @@ body {
   left: 0.1875rem;
   width: calc((100% - 0.375rem) / var(--count));
   border-radius: 0.375rem;
-  background: var(--color-violet-500);
+  background: var(--color-lime-500);
   box-shadow: none;
   transform: translate3d(calc(var(--active) * 100%), 0, 0);
   transition:
@@ -426,7 +417,7 @@ body {
 }
 
 .segmented__option.is-active {
-  color: #fff;
+  color: #111111;
 }
 
 /* Filter and multi-select pills. */
@@ -449,13 +440,13 @@ body {
 
 .chip:hover {
   color: var(--ui-text);
-  border-color: rgb(108 32 255 / 0.4);
+  border-color: rgb(197 247 79 / 0.4);
 }
 
 .chip.is-active {
-  color: #fff;
+  color: #111111;
   border-color: transparent;
-  background: var(--color-violet-500);
+  background: var(--color-lime-500);
 }
 
 /* Colour swatches. */
@@ -497,7 +488,7 @@ body {
 }
 
 .swatch.is-active {
-  box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 3.5px var(--color-violet-500);
+  box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 3.5px var(--color-lime-500);
 }
 
 /* Label-and-switch row. */
@@ -547,8 +538,8 @@ body {
 
 .icon-key.is-selected {
   opacity: 1;
-  border-color: var(--color-violet-500);
-  background: rgb(108 32 255 / 0.12);
+  border-color: var(--color-lime-500);
+  background: rgb(197 247 79 / 0.12);
 }
 
 .emoji-key {
@@ -590,7 +581,7 @@ body {
 }
 
 .palette-card:hover {
-  border-color: rgb(108 32 255 / 0.5);
+  border-color: rgb(197 247 79 / 0.5);
   background: color-mix(in oklab, var(--ui-bg-elevated) 70%, transparent);
 }
 
@@ -602,15 +593,15 @@ body {
   flex-shrink: 0;
   border-radius: 0.375rem;
   background: var(--ui-bg-elevated);
-  color: var(--color-violet-400);
+  color: var(--color-lime-600);
   transition:
     background 0.25s ease,
     color 0.25s ease;
 }
 
 .palette-card:hover .palette-card__icon {
-  background: var(--color-violet-500);
-  color: #fff;
+  background: var(--color-lime-500);
+  color: #111111;
 }
 
 .palette-card__add {

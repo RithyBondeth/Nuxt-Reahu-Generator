@@ -46,7 +46,7 @@ const isValid = computed(() => /^[0-9a-f]{3,8}$/i.test(model.value.trim().replac
           v-model="model"
           class="flex-1 font-mono"
           size="sm"
-          placeholder="6C20FF"
+          placeholder="C5F74F"
           :color="isValid ? undefined : 'error'"
           :ui="{ base: 'uppercase' }"
         >

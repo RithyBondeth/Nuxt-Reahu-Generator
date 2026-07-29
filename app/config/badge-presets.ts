@@ -12,9 +12,9 @@ export const BADGE_PRESETS: { group: string, items: BadgeItem[] }[] = [
     group: 'Status',
     items: [
       { label: 'Status', message: 'Open to work', color: '10B981', logo: '', href: '' },
-      { label: 'Focus', message: 'Building', color: '6C20FF', logo: 'rocket', href: '' },
-      { label: 'Location', message: 'Phnom Penh', color: '009CFF', logo: 'googlemaps', href: '' },
-      { label: 'Timezone', message: 'UTC+7', color: '64748B', logo: 'clockify', href: '' }
+      { label: 'Focus', message: 'Building', color: 'A9D93B', logo: 'rocket', href: '' },
+      { label: 'Location', message: 'Phnom Penh', color: '526723', logo: 'googlemaps', href: '' },
+      { label: 'Timezone', message: 'UTC+7', color: '707070', logo: 'clockify', href: '' }
     ]
   },
   {
@@ -40,7 +40,7 @@ export const BADGE_PRESETS: { group: string, items: BadgeItem[] }[] = [
 export const EMPTY_BADGE = (): BadgeItem => ({
   label: '',
   message: 'New badge',
-  color: '6C20FF',
+  color: 'A9D93B',
   logo: '',
   href: ''
 })
