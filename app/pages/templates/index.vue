@@ -5,9 +5,16 @@ import {
   type TemplateCategory
 } from '~/core/templates'
 
+const pageTitle = 'GitHub Profile README Templates'
+const pageDescription = 'Start with a complete, editable GitHub profile README template for developers, students, creators, open-source maintainers, and more.'
+
 useSeoMeta({
-  title: 'README Templates',
-  description: 'Start with a complete GitHub profile README and make every section your own.'
+  title: pageTitle,
+  description: pageDescription,
+  ogTitle: `${pageTitle} · Reahu Generator`,
+  ogDescription: pageDescription,
+  twitterTitle: `${pageTitle} · Reahu Generator`,
+  twitterDescription: pageDescription
 })
 
 const activeCategory = ref<'All' | TemplateCategory>('All')

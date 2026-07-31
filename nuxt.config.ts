@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { SITE_INDEX_ROUTES } from './site.config'
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
@@ -33,10 +35,25 @@ export default defineNuxtConfig({
     '/templates/**': { prerender: true },
     // The builder reads localStorage + the URL hash on boot. Rendering it on the
     // server would hydrate against state the server cannot see, so it is SPA-only.
-    '/build': { ssr: false }
+    '/build': {
+      ssr: false,
+      headers: {
+        'x-robots-tag': 'noindex, nofollow'
+      }
+    }
   },
 
   compatibilityDate: '2026-06-30',
+
+  nitro: {
+    prerender: {
+      routes: [
+        ...SITE_INDEX_ROUTES,
+        '/robots.txt',
+        '/sitemap.xml'
+      ]
+    }
+  },
 
   eslint: {
     config: {
@@ -44,6 +61,14 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
+    }
+  },
+
+  fonts: {
+    defaults: {
+      weights: [400, 500, 600, 700],
+      styles: ['normal'],
+      subsets: ['latin']
     }
   }
 })
