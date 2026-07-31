@@ -11,6 +11,7 @@ import { BLOCK_ORDER } from '~/core/blocks'
 useHead({ title: '' })
 
 const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.length))
+const { data: socialProof } = await useFetch('/api/social-proof')
 </script>
 
 <template>
@@ -62,8 +63,8 @@ const blocksTitle = LANDING_BLOCKS.title.replace('{count}', String(BLOCK_ORDER.l
                 <dd>{{ BLOCK_ORDER.length }}</dd>
               </div>
               <div>
-                <dt>Accounts</dt>
-                <dd>None</dd>
+                <dt>Trusted by</dt>
+                <dd>{{ socialProof?.userCountLabel }} users</dd>
               </div>
               <div>
                 <dt>Output</dt>
