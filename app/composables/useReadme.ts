@@ -13,9 +13,16 @@ import { renderReadme } from '~/core/render'
  */
 export const useReadme = createSharedComposable(() => {
   const collection = useBlockCollection()
+  const persistenceError = ref(false)
+  const invalidShare = ref(false)
 
   if (import.meta.client) {
-    useDocumentPersistence(collection.blocks, collection.clearHistory)
+    useDocumentPersistence(
+      collection.blocks,
+      collection.clearHistory,
+      available => persistenceError.value = !available,
+      () => invalidShare.value = true
+    )
   }
 
   const markdown = computed(() => renderReadme(collection.blocks.value))
@@ -25,7 +32,9 @@ export const useReadme = createSharedComposable(() => {
 
   return {
     ...collection,
+    invalidShare,
     markdown,
+    persistenceError,
     shareUrl,
     download
   }

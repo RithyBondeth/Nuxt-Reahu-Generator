@@ -25,6 +25,8 @@ Open http://localhost:3000 — the builder itself is at `/build`.
 | `npm run build` | Production build into `.output/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | ESLint (`npx eslint . --fix` to autofix) |
+| `npm test` | Run the document and renderer regression tests |
+| `npm run test:watch` | Run regression tests in watch mode |
 | `npm run typecheck` | `vue-tsc` over the whole project |
 
 ## Architecture

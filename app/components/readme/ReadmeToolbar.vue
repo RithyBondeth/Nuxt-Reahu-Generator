@@ -7,22 +7,41 @@ const theme = defineModel<'light' | 'dark'>('theme', { required: true })
 const { markdown, shareUrl, download } = useReadme()
 
 const toast = useToast()
-const { copy } = useClipboard()
+const { copy, isSupported } = useClipboard()
 
 const MODES: PreviewMode[] = ['preview', 'markdown']
 
+async function copyText(value: string, success: {
+  title: string
+  description?: string
+}) {
+  try {
+    if (!toValue(isSupported)) throw new Error('Clipboard API unavailable')
+
+    await copy(value)
+    toast.add({
+      ...success,
+      icon: 'i-lucide-check',
+      color: 'success'
+    })
+  } catch {
+    toast.add({
+      title: 'Could not copy',
+      description: 'Your browser blocked clipboard access. Select the Markdown and copy it manually.',
+      icon: 'i-lucide-triangle-alert',
+      color: 'error'
+    })
+  }
+}
+
 async function copyMarkdown() {
-  await copy(markdown.value)
-  toast.add({ title: 'Markdown copied', icon: 'i-lucide-check', color: 'success' })
+  await copyText(markdown.value, { title: 'Markdown copied' })
 }
 
 async function copyShareLink() {
-  await copy(shareUrl())
-  toast.add({
+  await copyText(shareUrl(), {
     title: 'Share link copied',
-    description: 'The whole document is encoded in the link — nothing is stored on a server.',
-    icon: 'i-lucide-link',
-    color: 'success'
+    description: 'The whole document is encoded in the link — nothing is stored on a server.'
   })
 }
 </script>
@@ -36,6 +55,7 @@ async function copyShareLink() {
         type="button"
         class="px-3 py-1 text-xs font-medium capitalize transition"
         :class="mode === option ? 'bg-elevated text-default' : 'text-dimmed hover:text-default'"
+        :aria-pressed="mode === option"
         @click="mode = option"
       >
         {{ option }}

@@ -9,15 +9,21 @@ import type { Block } from '~/types'
  * because `/build` runs with `ssr: false` (see `nuxt.config.ts`); rendering it
  * on the server would hydrate against state the server cannot see.
  */
-export function useDocumentPersistence(blocks: Ref<Block[]>, onHydrated: () => void) {
+export function useDocumentPersistence(
+  blocks: Ref<Block[]>,
+  onHydrated: () => void,
+  onPersistenceStatus?: (available: boolean) => void,
+  onInvalidShare?: () => void
+) {
   // A shared link wins over local storage, so opening someone else's link shows
   // their README rather than silently resurrecting your own draft.
   function hydrate() {
     const payload = readSharePayload(window.location.hash)
     const shared = payload ? decodeBlocks(payload) : null
 
-    if (shared) {
-      blocks.value = shared
+    if (payload) {
+      if (shared) blocks.value = shared
+      else onInvalidShare?.()
     } else {
       const stored = loadStoredBlocks()
       if (stored) blocks.value = stored
@@ -31,7 +37,10 @@ export function useDocumentPersistence(blocks: Ref<Block[]>, onHydrated: () => v
 
   watchDebounced(
     blocks,
-    value => persistBlocks(value),
+    (value) => {
+      const available = persistBlocks(value)
+      onPersistenceStatus?.(available)
+    },
     { deep: true, debounce: 400 }
   )
 }

@@ -8,6 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "@types/markdown-it": "^14.1.2",
     "eslint": "^10.8.0",
     "typescript": "^6.0.3",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.8"
   },
   "description": "Compose a GitHub profile README from drag-and-drop blocks. Runs entirely in the browser."

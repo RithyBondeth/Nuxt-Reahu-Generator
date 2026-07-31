@@ -9,9 +9,29 @@ useSeoMeta({
 const route = useRoute()
 const router = useRouter()
 const toast = useToast()
-const { undo, redo, replace } = useReadme()
+const { undo, redo, replace, persistenceError, invalidShare } = useReadme()
+
+watch(persistenceError, (failed) => {
+  if (!failed) return
+
+  toast.add({
+    title: 'Draft not saved',
+    description: 'Browser storage is unavailable. Download your README before leaving this page.',
+    icon: 'i-lucide-hard-drive',
+    color: 'error'
+  })
+})
 
 onMounted(async () => {
+  if (invalidShare.value) {
+    toast.add({
+      title: 'Share link could not be opened',
+      description: 'The link is invalid, incomplete, or from an unsupported version.',
+      icon: 'i-lucide-link-2-off',
+      color: 'error'
+    })
+  }
+
   const slug = typeof route.query.template === 'string' ? route.query.template : ''
   const template = getReadmeTemplate(slug)
   if (!template) return
@@ -41,12 +61,21 @@ defineShortcuts({
     <UContainer class="max-w-[96rem] py-6 sm:py-8">
       <div class="builder-masthead">
         <div>
-          <div class="eyebrow flex items-center gap-2 text-muted">
+          <div
+            class="eyebrow flex items-center gap-2"
+            :class="persistenceError ? 'text-error' : 'text-muted'"
+          >
             <span
+              v-if="!persistenceError"
               class="status-dot"
               aria-hidden="true"
             />
-            Saved locally
+            <UIcon
+              v-else
+              name="i-lucide-triangle-alert"
+              class="size-3.5"
+            />
+            {{ persistenceError ? 'Draft not saved' : 'Saved locally' }}
           </div>
           <h1 class="display mt-3 text-3xl sm:text-5xl">
             Compose your profile.
