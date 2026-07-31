@@ -1,10 +1,11 @@
 import { createBlock } from '~/core/blocks'
 import type { Block, BlockOf, BlockPropsMap, BlockType } from '~/types'
+import type { TemplateSlug } from '~~/site.config'
 
 export type TemplateCategory = 'Minimal' | 'Developer' | 'Student' | 'Open source' | 'Data' | 'Creator'
 
 export interface ReadmeTemplate {
-  slug: string
+  slug: TemplateSlug
   name: string
   category: TemplateCategory
   description: string

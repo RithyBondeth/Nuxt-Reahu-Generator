@@ -1,15 +1,39 @@
 <script setup lang="ts">
-const title = 'Reahu Generator'
-const description = 'Compose a GitHub profile README from drag-and-drop blocks. Live preview, shareable links, download the Markdown. No account, no server.'
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  SITE_URL
+} from '~~/site.config'
 
-useHead({
-  titleTemplate: chunk => (chunk ? `${chunk} · ${title}` : title),
+const route = useRoute()
+const canonicalUrl = computed(() => new URL(route.path, SITE_URL).toString())
+
+const applicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': SITE_NAME,
+  'url': SITE_URL,
+  'description': SITE_DESCRIPTION,
+  'applicationCategory': 'DeveloperApplication',
+  'operatingSystem': 'Any',
+  'isAccessibleForFree': true,
+  'offers': {
+    '@type': 'Offer',
+    'price': 0,
+    'priceCurrency': 'USD'
+  }
+}
+
+useHead(() => ({
+  titleTemplate: chunk => (chunk ? `${chunk} · ${SITE_NAME}` : SITE_NAME),
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#111111' }
   ],
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=3' }
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=3' },
+    { rel: 'canonical', href: canonicalUrl.value }
   ],
   htmlAttrs: {
     lang: 'en'
@@ -19,25 +43,31 @@ useHead({
       key: 'reahu-appearance',
       tagPosition: 'head',
       innerHTML: `(function(){try{var a=localStorage.getItem('reahu:accent-theme');var f=localStorage.getItem('reahu:font-theme');if(['lime','sky','coral','violet','gold','mint','pink','orange'].includes(a))document.documentElement.dataset.accentTheme=a;if(['modern','editorial','technical','ubuntu','noto'].includes(f))document.documentElement.dataset.fontTheme=f}catch(e){}})()`
+    },
+    {
+      key: 'reahu-application-schema',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(applicationSchema)
     }
   ]
-})
+}))
 
 useSeoMeta({
-  title,
-  description,
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
   ogType: 'website',
-  ogSiteName: title,
-  ogTitle: title,
-  ogDescription: description,
-  ogImage: '/og-templates.png',
+  ogSiteName: SITE_NAME,
+  ogTitle: SITE_NAME,
+  ogDescription: SITE_DESCRIPTION,
+  ogUrl: () => canonicalUrl.value,
+  ogImage: SITE_OG_IMAGE,
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: 'Reahu Generator',
+  ogImageAlt: `${SITE_NAME} interface preview`,
   twitterCard: 'summary_large_image',
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterImage: '/og-templates.png'
+  twitterTitle: SITE_NAME,
+  twitterDescription: SITE_DESCRIPTION,
+  twitterImage: SITE_OG_IMAGE
 })
 </script>
 
