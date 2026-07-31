@@ -2,6 +2,7 @@
 import { BLOCK_DEFINITIONS } from '~/core/blocks'
 import { getReadmeTemplate } from '~/core/templates'
 import { renderReadme } from '~/core/render'
+import { SITE_NAME, SITE_URL } from '~~/site.config'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug))
@@ -20,8 +21,45 @@ const previewTheme = ref<'light' | 'dark'>('dark')
 
 useSeoMeta({
   title: () => `${template.value!.name} Template`,
-  description: () => template.value!.description
+  description: () => template.value!.description,
+  ogTitle: () => `${template.value!.name} GitHub README Template · ${SITE_NAME}`,
+  ogDescription: () => template.value!.description,
+  twitterTitle: () => `${template.value!.name} GitHub README Template · ${SITE_NAME}`,
+  twitterDescription: () => template.value!.description
 })
+
+useHead(() => ({
+  script: [
+    {
+      key: 'reahu-template-breadcrumbs',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': SITE_URL
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'README Templates',
+            'item': `${SITE_URL}/templates`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
+            'name': template.value!.name,
+            'item': `${SITE_URL}/templates/${template.value!.slug}`
+          }
+        ]
+      })
+    }
+  ]
+}))
 </script>
 
 <template>

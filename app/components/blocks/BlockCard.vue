@@ -9,7 +9,12 @@ const { remove, duplicate, move } = useReadme()
 // Keep a new document scannable: the first block opens as the obvious starting
 // point and the rest stay one compact row away.
 const open = ref(props.index === 0)
+const hasOpened = ref(open.value)
 const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
+
+watch(open, (isOpen) => {
+  if (isOpen) hasOpened.value = true
+})
 </script>
 
 <template>
@@ -88,7 +93,10 @@ const definition = computed(() => BLOCK_DEFINITIONS[props.block.type])
     >
       <div class="disclosure__inner">
         <div class="border-t border-default bg-default/35 px-3 py-4">
-          <BlockEditor :block="block" />
+          <BlockEditor
+            v-if="hasOpened"
+            :block="block"
+          />
         </div>
       </div>
     </div>

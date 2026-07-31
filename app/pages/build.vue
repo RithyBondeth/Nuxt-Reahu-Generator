@@ -3,7 +3,8 @@ import { getReadmeTemplate } from '~/core/templates'
 
 useSeoMeta({
   title: 'Builder',
-  description: 'Compose your GitHub profile README from drag-and-drop blocks.'
+  description: 'Compose your GitHub profile README from drag-and-drop blocks.',
+  robots: 'noindex, nofollow'
 })
 
 const route = useRoute()

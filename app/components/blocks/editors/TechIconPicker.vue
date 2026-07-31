@@ -6,10 +6,14 @@ const props = defineProps<{ theme: 'dark' | 'light' }>()
 const selected = defineModel<string[]>({ required: true })
 
 const query = ref('')
+const groups = Object.keys(TECH_ICONS)
+const activeGroup = ref(groups[0] ?? '')
 
 const selectedSet = computed(() => new Set(selected.value))
+const activeIcons = computed(() => TECH_ICONS[activeGroup.value] ?? [])
 
 const label = (icon: string) => TECH_ICON_LABELS[icon] ?? icon
+const groupId = (group: string) => `tech-group-${group.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
 
 /**
  * Search flattens the groups into one result list. With ~200 icons the grouped
@@ -97,8 +101,11 @@ const iconUrl = (icon: string) => `${SERVICES.skillIcons}?i=${icon}&theme=${prop
             <img
               :src="iconUrl(icon)"
               :alt="label(icon)"
+              width="28"
+              height="28"
               class="size-7"
               loading="lazy"
+              decoding="async"
             >
           </button>
         </div>
@@ -106,17 +113,39 @@ const iconUrl = (icon: string) => `${SERVICES.skillIcons}?i=${icon}&theme=${prop
 
       <template v-else>
         <div
-          v-for="(icons, group) in TECH_ICONS"
-          :key="group"
+          role="tablist"
+          aria-label="Technology categories"
+          class="mb-3 flex gap-1.5 overflow-x-auto pb-1"
+        >
+          <button
+            v-for="group in groups"
+            :id="groupId(group)"
+            :key="group"
+            type="button"
+            role="tab"
+            class="chip shrink-0"
+            :class="{ 'is-active': activeGroup === group }"
+            :aria-selected="activeGroup === group"
+            aria-controls="tech-icon-panel"
+            @click="activeGroup = group"
+          >
+            {{ group }}
+          </button>
+        </div>
+
+        <div
+          id="tech-icon-panel"
+          role="tabpanel"
+          :aria-labelledby="groupId(activeGroup)"
         >
           <p class="mb-1.5 text-xs font-medium text-dimmed">
-            {{ group }}
+            {{ activeGroup }}
           </p>
 
           <div class="flex flex-wrap gap-1.5">
             <button
-              v-for="icon in icons"
-              :key="`${group}-${icon}`"
+              v-for="icon in activeIcons"
+              :key="`${activeGroup}-${icon}`"
               type="button"
               :title="label(icon)"
               :aria-pressed="selectedSet.has(icon)"
@@ -127,8 +156,11 @@ const iconUrl = (icon: string) => `${SERVICES.skillIcons}?i=${icon}&theme=${prop
               <img
                 :src="iconUrl(icon)"
                 :alt="label(icon)"
+                width="28"
+                height="28"
                 class="size-7"
                 loading="lazy"
+                decoding="async"
               >
             </button>
           </div>

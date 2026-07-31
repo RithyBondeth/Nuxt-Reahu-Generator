@@ -1,237 +1,216 @@
+<div align="center">
+
+<img src="./public/og-templates.png" alt="Reahu Generator — complete GitHub profile README templates" width="100%">
+
 # Reahu Generator
 
-Compose a GitHub profile README from drag-and-drop blocks. Live preview,
-undo/redo, shareable links, download as Markdown. Runs entirely in the browser —
-no backend, no database, no account.
+**Build a GitHub profile that feels like you — without hand-writing the Markdown.**
 
-Seventeen block types, including animated banners and typing text, four kinds of
-GitHub graph, ~200 tech icons, 50 social platforms, and 70 card themes.
+Compose your profile from focused blocks, preview it exactly as GitHub will render it, and export a ready-to-use `README.md`.
 
-## Setup
+[![Live Demo](https://img.shields.io/badge/Live_demo-C5F74F?style=for-the-badge&labelColor=111111&color=C5F74F)](https://reahu-generator.vercel.app)
+[![Open Builder](https://img.shields.io/badge/Open_builder-ffffff?style=for-the-badge&labelColor=111111&color=ffffff)](https://reahu-generator.vercel.app/build)
+[![GitHub stars](https://img.shields.io/github/stars/RithyBondeth/Nuxt-Reahu-Generator?style=for-the-badge&labelColor=111111&color=C5F74F)](https://github.com/RithyBondeth/Nuxt-Reahu-Generator/stargazers)
+
+[![Nuxt](https://img.shields.io/badge/Nuxt_4-00DC82?style=flat-square&logo=nuxt&logoColor=white)](https://nuxt.com)
+[![Vue](https://img.shields.io/badge/Vue_3-42B883?style=flat-square&logo=vuedotjs&logoColor=white)](https://vuejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-C5F74F?style=flat-square)](./LICENSE)
+
+</div>
+
+## See it in action
+
+![Reahu Generator landing page showing the block-based profile builder](./public/screenshots/reahu-landing.jpg)
+
+<p align="center">
+  <a href="https://reahu-generator.vercel.app"><strong>Explore the live app →</strong></a>
+</p>
+
+## Why Reahu?
+
+Great profile READMEs are memorable, but building one often means copying snippets, fixing broken image URLs, and repeatedly checking GitHub to see how everything renders.
+
+Reahu turns that work into a visual workflow:
+
+1. Pick a template or start with a useful default.
+2. Add and arrange the blocks that tell your story.
+3. Edit on the left while the GitHub-style preview updates on the right.
+4. Copy, share, or download the finished Markdown.
+
+Everything runs in your browser. There is no account, database, or backend, and your draft stays on your device.
+
+## Highlights
+
+| | Feature | What it gives you |
+| --- | --- | --- |
+| 🧩 | **17 focused blocks** | Headers, tech stacks, stats, activity, projects, socials, sponsors, and more |
+| 🎨 | **12 complete templates** | Strong starting points for different developer profiles and specialties |
+| 👀 | **Live GitHub-style preview** | Review your README in both light and dark themes before publishing |
+| ↕️ | **Drag-and-drop composition** | Reorder, duplicate, edit, or remove any section |
+| ↩️ | **Undo, redo, and autosave** | Experiment freely without losing your work |
+| 🔗 | **Shareable links** | Encode the document in the URL—no server-side storage required |
+| 📄 | **Markdown export** | Copy the source or download a ready-to-commit `README.md` |
+| 🔒 | **Private by default** | No sign-up, tracking account, database, or cloud draft storage |
+
+### A block library made for developer profiles
+
+- Animated banners and typing text
+- About, quote, table, divider, and custom Markdown sections
+- Tech stacks with roughly 200 icons
+- GitHub stats, streaks, languages, activity graphs, trophies, and pinned repositories
+- Custom badges and links for 50 social platforms
+- GitHub Sponsors, Buy Me a Coffee, Ko-fi, and other support buttons
+- Around 70 themes for compatible GitHub cards
+- Contribution snake and other motion-focused elements
+
+## The builder
+
+![Reahu Generator builder with editable blocks and a live GitHub-style preview](./public/screenshots/reahu-builder.jpg)
+
+The builder keeps the document controls and rendered result side by side. Every block has sensible defaults, purpose-built controls, and a pure Markdown renderer behind it.
+
+## Templates
+
+Start quickly with one of 12 profiles, then make every part your own:
+
+| General | Specialist | Creator |
+| --- | --- | --- |
+| Quiet Craft | Backend Blueprint | Creative System |
+| Full-stack Signal | Mobile Momentum | Freelance Studio |
+| Learning in Public | Cloud Control Room | Indie Launch |
+| Open-source Pulse | Data Field Notes | Research Ledger |
+
+[Browse all templates →](https://reahu-generator.vercel.app/templates)
+
+## Quick start
+
+### Requirements
+
+- Node.js 20 or newer
+- npm
+
+### Run locally
 
 ```bash
+git clone https://github.com/RithyBondeth/Nuxt-Reahu-Generator.git
+cd Nuxt-Reahu-Generator
 npm install
-```
-
-```bash
 npm run dev
 ```
 
-Open http://localhost:3000 — the builder itself is at `/build`.
+Open [http://localhost:3000](http://localhost:3000). The builder is available at [http://localhost:3000/build](http://localhost:3000/build).
 
-| Script | What it does |
+## Available commands
+
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Dev server on port 3000 |
-| `npm run build` | Production build into `.output/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run lint` | ESLint (`npx eslint . --fix` to autofix) |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Create a production build in `.output/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Check the codebase with ESLint |
+| `npm run typecheck` | Run Nuxt and Vue TypeScript checks |
 | `npm test` | Run the document and renderer regression tests |
 | `npm run test:watch` | Run regression tests in watch mode |
-| `npm run typecheck` | `vue-tsc` over the whole project |
 
-## Architecture
+## How it works
 
-The one idea worth knowing: **a README is an ordered array of typed blocks**, and
-the document is a pure function of that array.
+A Reahu document is an ordered array of typed blocks. The app turns that array into Markdown through a small, framework-independent render pipeline.
 
-The code is layered so that dependencies only ever point downward —
-`pages → components → composables → core → config → types`. Nothing in `core/`
-or `config/` imports Vue, so the entire render pipeline is plain TypeScript you
-can unit-test without mounting a component.
-
+```text
+pages
+  ↓
+components
+  ↓
+composables
+  ↓
+core renderers
+  ↓
+configuration + types
 ```
+
+```text
 app/
-  types/                   Type vocabulary. Depends on nothing.
-    block.ts                 BlockPropsMap — the single source of truth
-    common.ts social.ts stats.ts widgets.ts
-
-  config/                  Static data. No logic, no state.
-    services.ts              Third-party widget hosts (see caveats below)
-    social-platforms.ts      50 platforms: colours, logos, href builders
-    tech-icons.ts            ~200 skillicons slugs + simple-icons aliases
-    stats-themes.ts          70 card themes, grouped for the picker
-    widgets.ts               Banner shapes, trophy filters, typing fonts
-    support-platforms.ts badge-presets.ts emoji.ts ui-options.ts landing.ts
-
-  core/                    Pure TypeScript. No Vue, no DOM state.
-    render/                  One `props -> Markdown` file per block type
-      header.ts banner.ts typing.ts about.ts tech-stack.ts stats.ts
-      activity.ts trophies.ts repos.ts snake.ts badges.ts socials.ts
-      support.ts quote.ts table.ts divider.ts markdown.ts
-      helpers.ts               qs / align / heading / badge primitives
-      registry.ts              Maps block type -> renderer; renderReadme()
-    blocks/
-      definitions.ts           Labels, icons, categories, default props
-      factory.ts               createBlock / cloneBlock
-      starter.ts               The first-run document
-    document/
-      storage.ts               localStorage load/save
-      share.ts                 lz-string encode/decode for share links
-      download.ts              Blob download
-
-  composables/             Vue state. Thin wrappers over core/.
-    useBlockCollection.ts    The array + CRUD + undo/redo
-    useDocumentPersistence.ts Hydrate on boot, save on change
-    useReadme.ts             Shared singleton wiring the two together
-
-  components/
-    blocks/                  BlockList, BlockCard, BlockEditor, AddBlockMenu,
-                             HistoryControls, editors/*
-    readme/                  ReadmePanel, ReadmeToolbar, ReadmePreview
-
-  pages/
-    index.vue                Landing page (prerendered)
-    build.vue                The builder (SPA-only) — 20 lines, just layout
+├── components/
+│   ├── blocks/       Block list, cards, editors, and history controls
+│   ├── landing/      Product demonstration and marketing sections
+│   └── readme/       Preview, toolbar, and output panel
+├── composables/      Document state, persistence, undo, and redo
+├── config/           Icons, services, themes, platforms, and UI options
+├── core/
+│   ├── blocks/       Definitions, defaults, and block factories
+│   ├── document/     Local storage, sharing, and download helpers
+│   ├── render/       Pure block-to-Markdown renderers
+│   └── templates/    Ready-made profile documents
+├── pages/            Landing page, templates, and builder
+└── types/            Shared TypeScript contracts
 ```
 
-Components live in feature folders but keep flat names (`<BlockCard>`, not
-`<BlocksBlockCard>`) via `components: [{ path, pathPrefix: false }]` in
-`nuxt.config.ts`. Names must stay unique across those folders.
+The dependency direction stays simple: the core renderers and configuration do not import Vue, so the Markdown pipeline can be tested independently of the interface.
 
-### Adding a block type
+### Add a new block
 
-Add a key to `BlockPropsMap` and the compiler walks you through the rest — it
-will refuse to build until the renderer, the metadata, the editor, and the
-palette entry all exist:
+The type system guides the implementation:
 
-1. `types/block.ts` — the props
-2. `core/render/<name>.ts` + register it in `render/registry.ts`
-3. `core/blocks/definitions.ts` — label, icon, category, defaults
-4. `components/blocks/editors/<Name>Editor.vue` + the map in `BlockEditor.vue`
+1. Add the props to `app/types/block.ts`.
+2. Create and register a renderer in `app/core/render/`.
+3. Add its label, category, icon, and defaults in `app/core/blocks/definitions.ts`.
+4. Build the matching editor in `app/components/blocks/editors/`.
 
-Step 3's `BLOCK_CATEGORIES` is checked too: `BLOCK_ORDER` carries a conditional
-type that collapses to `never` if a block type is missing from the palette, so
-forgetting one is a compile error rather than a block nobody can find.
+The project will fail type-checking if a block is missing from the renderer registry or block palette.
 
-The shared editor controls — `SegmentedField`, `ColorField`, `ToggleRow`,
-`StringListField`, `EmojiPicker` — are auto-imported, so a new editor is mostly
-composition rather than markup.
+## Deployment
 
-### Blocks
-
-| Category | Blocks |
-| --- | --- |
-| Structure | Header, Banner, Divider |
-| Content | About me, Tech stack, Custom badges, Table, Dev quote, Custom Markdown |
-| Graphs | GitHub stats, Activity graph, Trophies, Pinned repos |
-| Motion | Typing text, Contribution snake |
-| Links | Socials, Sponsor buttons |
-
-## Brand
-
-Reahu uses a Drizzle-inspired colour system: one acid-lime accent over cool
-graphite surfaces. The custom mark is an abstract `R` assembled from modular
-blocks, connecting the identity to the product's block-based workflow:
-
-| Token | Value | Role |
-| --- | --- | --- |
-| `lime-500` (primary) | `#C5F74F` | actions and active states |
-| `slate-950` (surface) | `#111111` | dark canvas |
-| `slate-800` (elevated) | `#282828` | raised surfaces |
-| `slate-400` (muted) | `#909090` | secondary text |
-
-Ramps are defined in `app/assets/css/main.css` and aliased in
-`app/app.config.ts`. Hairline borders and quiet grid lines provide structure;
-brand colour is reserved for active controls and primary actions.
-
-Type is Ubuntu throughout, with Ubuntu Mono reserved for code and section
-labels. Both are self-hosted at build time by `@nuxt/fonts`, which ships with
-Nuxt UI, so there is no CDN request at runtime.
-
-The landing page uses a compact product demo as its main visual. It mirrors the
-real two-pane builder rather than introducing a separate decorative hero.
-
-The browser icon uses the same blocks symbol as the live brand mark.
-The social image is generated from its source artwork.
+Reahu works on Vercel, Netlify, Cloudflare Pages, and other Nuxt-compatible hosts.
 
 ```bash
-sips -s format png public/og-image.svg --out public/og-image.png
+npm run build
 ```
 
-## Things that will bite you
+Deploy the generated `.output/` directory. The public pages and template gallery are prerendered for discoverability, while `/build` stays client-side because it reads local drafts and shared documents from the browser.
 
-**`/build` is `ssr: false` on purpose.** It reads `localStorage` and the URL hash
-at setup time. Rendering it on the server would hydrate against state the server
-cannot see. `/` stays prerendered for SEO. See `routeRules` in `nuxt.config.ts`.
+## Privacy and external services
 
-**The preview uses `v-html`.** That is unavoidable — an accurate GitHub preview
-needs the raw-HTML subset GitHub allows inside Markdown (`<div align>`, `<img>`,
-`<picture>`). Input is sanitized with DOMPurify first, which matters because
-share links carry a whole document in the URL fragment, so the content is not
-always the viewer's own. `vue/no-v-html` is disabled for that one file in
-`eslint.config.mjs` — scoped by path, so the rule still guards everywhere else.
+Reahu does not send drafts to its own backend. Local drafts use `localStorage`, and shared documents are compressed into the URL fragment.
 
-**Every card is somebody else's free-tier deployment.** None of them are ours,
-none of them are under contract, and two of the best-known ones went dark while
-this was being written. All hosts live in `app/config/services.ts` so a swap is
-one line. The current state:
+Some generated blocks load public images from third-party services such as Shields.io, Skill Icons, GitHub Readme Stats, GitHub Profile Trophy, Streak Stats, Capsule Render, and the GitHub Readme Activity Graph. Those services have their own availability and privacy policies. Their hosts are centralized in `app/config/services.ts` so maintainers can replace or self-host them easily.
 
-| Service | Host | Note |
-| --- | --- | --- |
-| Stats, languages, pins | `gh-readme-stats.vercel.app` | Not the canonical host — see below |
-| Trophies | `github-trophies.vercel.app` | Not the canonical host — see below |
-| Streak | `streak-stats.demolab.com` | Maintained |
-| Typing SVG | `readme-typing-svg.demolab.com` | Maintained |
-| Banner, divider | `capsule-render.vercel.app` | Fine |
-| Activity graph | `github-readme-activity-graph.vercel.app` | Fine |
-| Badges | `img.shields.io` | Fine |
-| Icon grid | `skillicons.dev` | Fine |
+## Contributing
 
-**`STATS_HOST` and `TROPHY_HOST` point at community mirrors, not the official
-instances.** Both canonical hosts return errors for every request, including
-ones with no parameters — `github-readme-stats.vercel.app` answers `503
-DEPLOYMENT_PAUSED` and `github-profile-trophy.vercel.app` answers `402
-DEPLOYMENT_DISABLED`. Those are switched-off deployments rather than rate
-limiting, so retrying does not help. The mirrors run the same open-source code
-and take the same parameters, but they belong to third parties nobody here has
-vetted, and every visitor to a generated README fetches an image from them. If
-you depend on these cards, [deploy your own
-instance](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own)
-and point `STATS_HOST` at it.
+Contributions are welcome. A helpful way to get started:
 
-**Do not use `github-readme-streak-stats.herokuapp.com`** or
-**`readme-typing-svg.herokuapp.com`**. Both stopped resolving when Heroku ended
-free dynos, and most tutorials still list them. `streak-stats.demolab.com` and
-`readme-typing-svg.demolab.com` are the maintained replacements.
+1. Fork the repository and create a focused branch.
+2. Make the change and keep block props JSON-serializable.
+3. Run `npm run lint`, `npm run typecheck`, and `npm run build`.
+4. Open a pull request explaining the problem and the result.
 
-**These services fail silently, so verify slugs against the source.** An unknown
-skillicons slug renders a blank tile, an unknown card theme falls back to the
-default palette, and an unknown trophy filter returns an empty card — none of
-them return an error. Every slug in `tech-icons.ts`, every theme in
-`stats-themes.ts`, and every filter in `widgets.ts` was checked against the live
-service or the upstream source, which is why the trophy filters use upstream's
-exact spellings (`MultiLanguage`, not `MultipleLang`).
+Bug reports, template ideas, accessibility improvements, new block proposals, and documentation fixes are all valuable.
 
-**Two encoding traps in the query builder.** `qs()` percent-encodes values, and
-that is usually what you want — but a literal `+` becomes `%2B`, which arrives
-as a plus sign rather than a space. That is why `TypingFont` stores `Fira Code`
-and not the `Fira+Code` form the service's own docs use: the `+` form silently
-returns a card with no text in it. Semicolons and colons are fine encoded, since
-the services decode before parsing.
+## Support the project
 
-**Do not name a CSS class `collapse`.** Tailwind ships a `collapse` utility that
-sets `visibility: collapse`, and a class of that name on a wrapper hides
-everything inside it. The block card's disclosure is `.disclosure` for exactly
-this reason.
+If Reahu helps you build a better GitHub profile, please consider [giving the repository a star](https://github.com/RithyBondeth/Nuxt-Reahu-Generator). It helps more developers discover the project and gives the work momentum.
 
-**`USelect` rejects an empty-string option value.** It reserves `''` for
-clearing the field and shows the placeholder instead, and passing one throws at
-render. "No animation" is therefore the string `'none'`, dropped from the query
-by the renderer.
+You can also:
 
-**Block props must stay JSON-serializable.** Persistence, share links, and
-`cloneBlock` all round-trip them through JSON. Adding a `Date`, `Map`, or
-function to `BlockPropsMap` will break all three silently.
+- Share Reahu with a friend or community.
+- Open an issue with a useful idea.
+- Contribute a fix, template, or new block.
+- Follow [Rithy Bondeth](https://github.com/RithyBondeth) for future releases.
 
-**Profile READMEs must be Markdown.** The output is a `README.md` that goes in a
-repo named *exactly* your GitHub username. An `.html` file will not render as a
-profile.
+## Author
 
-## Deploying
+Designed and developed by **[Rithy Bondeth](https://github.com/RithyBondeth)** — full-stack developer and AI engineer in Phnom Penh, Cambodia.
 
-Nitro auto-detects the target, so Vercel / Netlify / Cloudflare Pages all work
-with no config. `npm run build`, then deploy `.output/`.
+[Portfolio](https://bondeth.dev) · [GitHub](https://github.com/RithyBondeth) · [Live project](https://reahu-generator.vercel.app)
 
-Nothing here needs a server today. If you later add GitHub prefill, AI-generated
-copy, or publish-to-GitHub via OAuth, those go in `server/api/` in this same
-project and deploy alongside as functions.
+## License
+
+Released under the [MIT License](./LICENSE).
+
+<div align="center">
+
+**Your GitHub profile is part of your portfolio. Make it memorable.**
+
+[Build yours now →](https://reahu-generator.vercel.app/build)
+
+</div>
