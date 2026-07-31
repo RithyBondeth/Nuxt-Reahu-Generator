@@ -28,6 +28,12 @@ export default defineNuxtConfig({
     fallback: 'dark'
   },
 
+  // Private server configuration. Override in production with
+  // NUXT_TRUSTED_USER_COUNT without exposing the raw value to the client bundle.
+  runtimeConfig: {
+    trustedUserCount: 1000
+  },
+
   routeRules: {
     // Landing page is static — good for SEO and free to serve.
     '/': { prerender: true },

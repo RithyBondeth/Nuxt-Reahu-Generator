@@ -12,6 +12,8 @@ Compose your profile from focused blocks, preview it exactly as GitHub will rend
 [![Open Builder](https://img.shields.io/badge/Open_builder-ffffff?style=for-the-badge&labelColor=111111&color=ffffff)](https://reahu-generator.vercel.app/build)
 [![GitHub stars](https://img.shields.io/github/stars/RithyBondeth/Nuxt-Reahu-Generator?style=for-the-badge&labelColor=111111&color=C5F74F)](https://github.com/RithyBondeth/Nuxt-Reahu-Generator/stargazers)
 
+**Trusted by 1,000+ developers building standout GitHub profiles.**
+
 [![Nuxt](https://img.shields.io/badge/Nuxt_4-00DC82?style=flat-square&logo=nuxt&logoColor=white)](https://nuxt.com)
 [![Vue](https://img.shields.io/badge/Vue_3-42B883?style=flat-square&logo=vuedotjs&logoColor=white)](https://vuejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
