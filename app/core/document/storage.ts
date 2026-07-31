@@ -1,4 +1,5 @@
 import type { Block } from '~/types'
+import { parseBlocks } from './validation'
 
 /**
  * Local persistence for the working document.
@@ -9,18 +10,23 @@ import type { Block } from '~/types'
 const STORAGE_KEY = 'ghreadme:blocks:v1'
 
 export function loadStoredBlocks(): Block[] | null {
-  const saved = window.localStorage.getItem(STORAGE_KEY)
-  if (!saved) return null
-
   try {
+    const saved = window.localStorage.getItem(STORAGE_KEY)
+    if (!saved) return null
+
     const parsed = JSON.parse(saved)
-    return Array.isArray(parsed) && parsed.length ? parsed as Block[] : null
+    return parseBlocks(parsed)
   } catch {
-    // Corrupt payload — the caller falls back to the starter document.
+    // Corrupt payload or unavailable storage — the caller uses the starter.
     return null
   }
 }
 
-export function persistBlocks(blocks: Block[]): void {
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(blocks))
+export function persistBlocks(blocks: Block[]): boolean {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(blocks))
+    return true
+  } catch {
+    return false
+  }
 }

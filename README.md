@@ -110,6 +110,8 @@ Open [http://localhost:3000](http://localhost:3000). The builder is available at
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Check the codebase with ESLint |
 | `npm run typecheck` | Run Nuxt and Vue TypeScript checks |
+| `npm test` | Run the document and renderer regression tests |
+| `npm run test:watch` | Run regression tests in watch mode |
 
 ## How it works
 

@@ -1,5 +1,6 @@
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string'
 import type { Block } from '~/types'
+import { parseBlocks } from './validation'
 
 /**
  * Share links.
@@ -10,16 +11,19 @@ import type { Block } from '~/types'
  * authored by someone other than the person viewing it.
  */
 const SHARE_PARAM = 's'
+const MAX_SHARE_PAYLOAD_LENGTH = 100_000
 
 function encodeBlocks(blocks: Block[]): string {
   return compressToEncodedURIComponent(JSON.stringify(blocks))
 }
 
 export function decodeBlocks(payload: string): Block[] | null {
+  if (!payload || payload.length > MAX_SHARE_PAYLOAD_LENGTH) return null
+
   try {
     const json = decompressFromEncodedURIComponent(payload)
     const parsed = json ? JSON.parse(json) : null
-    return Array.isArray(parsed) && parsed.length ? parsed as Block[] : null
+    return parseBlocks(parsed)
   } catch {
     return null
   }
